@@ -10,6 +10,8 @@ Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" a
 
 
 ![Screenshot](Screenshot.png)
+![demo](demo.png)
+![Screenshot_](Screenshot_.png)
 
 ## Download / Install
 
@@ -163,3 +165,5 @@ Accepting cryptocurrency donations for rework
 GPLv3
 
 Copyright (c) Sebastian Raff
+
+![TuxAndFox](Tux&Fox.png)
