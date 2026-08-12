@@ -9,7 +9,7 @@ and packages it as a Flatpak for Linux. It adds quality-of-life improvements suc
 Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
 
-[Screenshot](https://i.ibb.co/WNty9HCc/Screenshot.png)
+[Screenshot](Screenshot.png)
 
 ## Download / Install
 
