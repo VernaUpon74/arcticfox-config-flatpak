@@ -143,7 +143,6 @@ async fn ipc_send(
             if !request.data.is_null() {
                 cmd.insert("data".to_string(), request.data);
             }
-            eprintln!("Sending to sidecar: {}", serde_json::to_string(&cmd).unwrap_or_default());
             sidecar_send(&state, serde_json::Value::Object(cmd), None).await
         }
     }
@@ -212,17 +211,13 @@ async fn resolve_resource_path(
         let dev_path = PathBuf::from(manifest).join("../").join(&relative_path);
         let public_path = PathBuf::from(manifest).join("../public/").join(&relative_path);
         for candidate in [dev_path, public_path] {
-            eprintln!("resolve_resource_path candidate: {}", candidate.display());
             if candidate.exists() {
-                eprintln!("resolve_resource_path selected (dev/public): {}", candidate.display());
                 return Ok(candidate.to_string_lossy().to_string());
             }
         }
     }
     for candidate in &candidates {
-        eprintln!("resolve_resource_path candidate: {}", candidate.display());
         if candidate.exists() {
-            eprintln!("resolve_resource_path selected: {}", candidate.display());
             return Ok(candidate.to_string_lossy().to_string());
         }
     }
@@ -550,8 +545,6 @@ async fn spawn_sidecar(app: &tauri::AppHandle) -> Result<(), String> {
                         let _ = app_handle.emit(&format!("sidecar:{}", event.event), event.payload);
                     }
                 }
-            } else {
-                eprintln!("Sidecar stdout: {}", line);
             }
         }
     });

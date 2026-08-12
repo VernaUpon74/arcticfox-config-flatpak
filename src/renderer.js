@@ -6,7 +6,7 @@ import { ipc, getLocale, getAppVersion, readTextFile, resolveResourcePath, showE
 
 let config;
 let lang;
-let appVersion = '1.11.10';
+let appVersion = '1.12.0';
 
 ipc.on('connect', (event, status) => {
     $('#connection-status').html(_('Status.Device') + ' ' + (status ? _('Status.Connected') : _('Status.Disconnected')));
@@ -38,7 +38,7 @@ ipc.on('batchange', (event, data) => {
     config.CustomBatteryProfiles[data.index] = data.table;
 });
 
-let foxfirmware = '';
+let foxfirmware = '170909';
 
 // DEVIATION: The original fork did not expose the per-profile Celsius/Fahrenheit
 // selector (IsCelcius, bit 0x20 of Flags). We normalize it here so the UI checkbox

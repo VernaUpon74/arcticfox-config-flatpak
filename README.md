@@ -171,4 +171,6 @@ GPLv3
 
 Copyright (c) Sebastian Raff
 
+Flatpak packaging and rework by OneButtFarting
+
 ![TuxAndFox](Tux&Fox.png)

@@ -159,7 +159,6 @@ const chart = new Highcharts.Chart({
 let tableIndex;
 
 ipc.on('data', (event, data) => {
-    console.log(data);
     tableIndex = data.index;
     $('#Name').val(data.table.Name.replace(/\u0000/g, ''));
     $('#Cutoff').val(data.table.Cutoff);

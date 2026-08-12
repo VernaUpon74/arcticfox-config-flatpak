@@ -1091,10 +1091,6 @@ class AfcFile {
 
             }
 
-            if (typeof Value === 'undefined') {
-                console.log('!!!', Key);
-            }
-
             obj.SerializableConfiguration.Data.Item.push({
                 $: {Key, Value}
             });
