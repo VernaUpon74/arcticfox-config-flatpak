@@ -150,6 +150,8 @@ Based on the work of [NFE Team](https://nfeteam.org/) and [hobbyquaker](https://
 
 This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
 
+Kimi Code assisted in software rewrite
+
 ## Donations 
 
 Accepting cryptocurrency donations for rework
