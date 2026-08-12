@@ -8,7 +8,8 @@ This fork reworks the original Electron-based application as a [Tauri](https://t
 and packages it as a Flatpak for Linux. It adds quality-of-life improvements such as a dark UI,
 Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
-![Screenshot](screenshot.png "Screenshot")
+
+[Screenshot](https://i.ibb.co/WNty9HCc/Screenshot.png)
 
 ## Download / Install
 
