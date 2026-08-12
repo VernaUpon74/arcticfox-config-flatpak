@@ -5,7 +5,7 @@
 > Configuration Tool for Vape Battery Mods with Arcticfox Firmware.
 
 This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app
-and packages it as a Flatpak image for Linux. It adds quality-of-life improvements such as an eternally dark UI,
+and packages it as a Flatpak image for Linux. It adds quality-of-life improvements such as an eternally dark UI, Freedom Unit selection that works,
 Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
 
