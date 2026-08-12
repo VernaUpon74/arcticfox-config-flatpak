@@ -4,8 +4,11 @@
 #      leak stale bytes from previous transfers.
 #   2. Parse and write the IsCelcius profile flag at bit 0x20, which the original
 #      module ignored; this matches newer ArcticFox firmware behavior.
+#   3. Match HID disconnect errors by prefix instead of exact string, because
+#      node-hid 2.x appends platform-specific details (e.g. "unexpected poll
+#      error (device disconnected)") to the base message.
 diff --git a/node_modules/arcticfox/index.js b/node_modules/arcticfox/index.js
-index 9363c3c..dafe424 100644
+index 9363c3c..0390333 100644
 --- a/node_modules/arcticfox/index.js
 +++ b/node_modules/arcticfox/index.js
 @@ -96,7 +96,7 @@ class ArcticFox extends events.EventEmitter {
@@ -43,6 +46,15 @@ index 9363c3c..dafe424 100644
                                  this.callback = null;
                              }
                          }
+@@ -131,7 +131,7 @@ class ArcticFox extends events.EventEmitter {
+             });
+             this.hid.on('error', err => {
+                 this.emit('error', err);
+-                if (err.toString() === 'Error: could not read from HID device') {
++                if (err.toString().startsWith('Error: could not read from HID device')) {
+                     this.disconnect();
+                 }
+             });
 @@ -259,6 +259,9 @@ class ArcticFox extends events.EventEmitter {
          if (profile.IsTemperatureDominant) {
              flags += 0x10;

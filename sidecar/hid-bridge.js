@@ -46,13 +46,15 @@ function clearReconnectTimer() {
 function scheduleReconnect() {
     clearReconnectTimer();
     if (!fox.connected) {
+        console.error('[sidecar] scheduling reconnect in', RECONNECT_INTERVAL_MS, 'ms');
         reconnectTimer = setTimeout(() => {
             reconnectTimer = null;
             if (!fox.connected) {
+                console.error('[sidecar] attempting reconnect');
                 try {
                     fox.connect();
                 } catch (err) {
-                    // Device still not present; retry later.
+                    console.error('[sidecar] reconnect attempt failed:', err.toString());
                 }
                 scheduleReconnect();
             }
@@ -97,6 +99,7 @@ function emit(channel, data) {
 
 function onConnect() {
     clearReconnectTimer();
+    console.error('[sidecar] device connected');
     emit('connect', true);
     if (autoconnect) {
         fox.setDateTime(new Date());
@@ -105,11 +108,13 @@ function onConnect() {
 }
 
 function onClose() {
+    console.error('[sidecar] device disconnected, scheduling reconnect');
     emit('connect', false);
     scheduleReconnect();
 }
 
 function onError(err) {
+    console.error('[sidecar] HID error:', err.toString());
     sendError('HID error', err);
 }
 
@@ -119,6 +124,7 @@ fox.disconnect = function() {
     if (fox.hid && fox.hid.close) {
         try { fox.hid.close(); } catch (e) {}
     }
+    fox.hid = null;
     if (fox.connected) {
         fox.connected = false;
         fox.emit('close');
