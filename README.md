@@ -141,12 +141,19 @@ Clone the repo, run `npm install`, and use `npm run tauri:dev` for development.
 ## Credits
 
 Based on the work of [NFE Team](https://nfeteam.org/) and [hobbyquaker](https://github.com/hobbyquaker/)
+
 - https://github.com/maelstrom2001/ArcticFox
 - https://github.com/TBXin/NFirmwareEditor
 - https://github.com/hobbyquaker/
 
 
 This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
+
+## Donations 
+
+Accepting cryptocurrency donations for rework
+- BTC bc1qpfq3c6hdflafccqmsl4v7ussvlw8pazpwez09m 
+- XMR 85YdUQXSMTgTeySZCyJjh9QTnzevgCHtZA6dhmFYMZqtE529pUZ5K8ceEC2ysaV2o4CuMuYtoaYPYdJfHYGX7m1WMgyM53i
 
 ## License
 
