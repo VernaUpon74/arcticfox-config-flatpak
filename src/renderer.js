@@ -295,7 +295,7 @@ function uiUpdate() {
 
     $('#startscreen').hide();
 
-    $('#Product').html(config.ProductName);
+    $('#Product').val(config.ProductName);
 
     uiUpdateSkinOptions();
 
@@ -471,8 +471,6 @@ function _(key) {
 function uiInitMenu() {
     // Replace Electron remote Menu with a simple DOM dropdown.
     const menuHtml = '<ul id="configuration-menu-dropdown" class="nav-group" style="display:none;position:absolute;z-index:1000;background:#fff;border:1px solid #ccc;list-style:none;padding:4px 0;margin:0;min-width:120px;">' +
-        '<li id="menu-download" style="padding:4px 12px;cursor:pointer;">' + _('DownloadButton') + '</li>' +
-        '<li id="menu-upload" style="padding:4px 12px;cursor:pointer;">' + _('UploadButton') + '</li>' +
         '<li id="menu-new" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.New') + '</li>' +
         '<li id="menu-open" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.Open') + '</li>' +
         '<li id="menu-save" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.SaveAs') + '</li>' +
@@ -553,7 +551,6 @@ async function uiInit() {
     await uiTranslate();
     uiInitButtons();
     uiInitMenu();
-    uiInitDownloadUploadMenu();
     uiInitTabs();
     uiInitChangeHandlers();
 
@@ -713,17 +710,6 @@ window.resetSettings = async function () {
     ipc.send('upload', config);
     uiUpdate();
 };
-
-function uiInitDownloadUploadMenu() {
-    $('#menu-download').click(function () {
-        window.downloadSettings();
-        $('#configuration-menu-dropdown').hide();
-    });
-    $('#menu-upload').click(function () {
-        window.uploadSettings();
-        $('#configuration-menu-dropdown').hide();
-    });
-}
 
 $(document).on('keydown', function (e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {

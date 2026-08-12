@@ -175,8 +175,26 @@ body,
     app-region: no-drag !important;
 }
 
+.toolbar-footer .toolbar-actions > .btn {
+    text-decoration: none !important;
+}
+
 .toolbar .title {
     color: var(--fg-color) !important;
+}
+
+#Product {
+    background: transparent !important;
+    border: none !important;
+    color: var(--fg-color) !important;
+    font: inherit !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    width: 220px !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    outline: none !important;
 }
 
 .tab-group {
