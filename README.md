@@ -1,14 +1,15 @@
-# arcticfox-config
+# arcticfox-config-flatpak
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 > Configuration Tool for Vape Battery Mods with Arcticfox Firmware.
 
-This fork reworks the original Electron-based application as a [Tauri](https://tauri.app/) desktop app
-and packages it as a Flatpak for Linux. It adds quality-of-life improvements such as a dark UI,
-Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" device mode.
+This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app
+and packages it as a Flatpak image for Linux. It adds quality-of-life improvements such as an eternally dark UI, Freedom Unit selection that works,
+Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
-![Screenshot](screenshot.png "Screenshot")
+
+![Screenshot](Screenshot.png)
 
 ## Download / Install
 
@@ -121,7 +122,7 @@ Notable changes include:
 
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
-- Dark UI by default
+- Dark UI by default. Up Material Yours
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
 - Lite mode support in Appearance settings
@@ -140,12 +141,22 @@ Clone the repo, run `npm install`, and use `npm run tauri:dev` for development.
 
 ## Credits
 
-Based on the work of [NFE Team](https://nfeteam.org/)
+Based on the work of [NFE Team](https://nfeteam.org/) and [hobbyquaker](https://github.com/hobbyquaker/)
 
 - https://github.com/maelstrom2001/ArcticFox
 - https://github.com/TBXin/NFirmwareEditor
+- https://github.com/hobbyquaker/
+
 
 This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
+
+Kimi Code assisted in software rewrite
+
+## Donations 
+
+Accepting cryptocurrency donations for rework
+- BTC bc1qpfq3c6hdflafccqmsl4v7ussvlw8pazpwez09m 
+- XMR 85YdUQXSMTgTeySZCyJjh9QTnzevgCHtZA6dhmFYMZqtE529pUZ5K8ceEC2ysaV2o4CuMuYtoaYPYdJfHYGX7m1WMgyM53i
 
 ## License
 
