@@ -3,7 +3,9 @@
  * HID code in the original hobbyquaker/arcticfox-config fork. It runs as a separate
  * Node.js process spawned by the Rust backend and communicates over stdin/stdout.
  * Notable behavioral changes from the original fork:
- *   - libusb backend is forced on Linux to match the old node-hid 0.5.x behavior.
+ *   - hidraw backend is used on Linux so the Flatpak sandbox can detect
+ *     hotplugged HID devices via /dev/hidraw* (libusb relies on /dev/bus/usb
+ *     which Flatpak does not expose for devices plugged in after startup).
  *   - supportedSettingsVersion is bumped from 11 to 12 for current firmware builds.
  *   - Device auto-reconnect is implemented explicitly in this bridge.
  *   - Configuration strings are sanitized before being emitted to the renderer.
@@ -14,8 +16,12 @@ const path = require('path');
 // of the original Electron app (node-hid 0.5.x) and avoiding hidraw report-id
 // shifts that confuse the arcticfox parser.
 const nodehid = require('node-hid');
+// DEVIATION: hidraw is used instead of libusb so the Flatpak sandbox can see
+// hotplugged HID devices via /dev/hidraw*. The libusb backend relies on
+// /dev/bus/usb which Flatpak does not expose for devices plugged in after
+// the app starts.
 if (nodehid.setDriverType) {
-    nodehid.setDriverType('libusb');
+    nodehid.setDriverType('hidraw');
 }
 const fox = require('arcticfox');
 const xml2js = require('xml2js');
@@ -185,6 +191,9 @@ function handleCommand(cmd) {
             } else {
                 autoconnect = true;
                 fox.connect();
+                if (!fox.connected) {
+                    scheduleReconnect();
+                }
             }
             break;
 
