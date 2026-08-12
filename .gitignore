@@ -2,3 +2,9 @@ node_modules
 .idea
 dist
 release
+src-tauri/target
+src-tauri/gen
+flatpak/build-dir
+flatpak/repo
+flatpak/.flatpak-builder
+*.flatpak

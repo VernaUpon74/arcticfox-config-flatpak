@@ -1,0 +1,413 @@
+body {
+    font: caption;
+}
+
+tr td {
+    height: 28px;
+}
+
+.tab-group {
+    display: flex !important;
+    align-items: center !important;
+    height: 26px !important;
+    width: 100%;
+    padding: 2px 4px !important;
+    box-sizing: border-box !important;
+    gap: 4px !important;
+}
+
+.view-container .view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.view-container .subview {
+    width: 100%;
+    height: calc(100% - 26px);
+    position: absolute;
+    top: 26px;
+    left: 0;
+}
+
+#SelectedProfile {
+    display: inline;
+    width: 60px;
+    height: 18px;
+    min-height: 0;
+    padding: 0;
+    font-size: 10px;
+    padding-top: 3px;
+}
+
+
+#table-profiles {
+    width: 100%;
+}
+
+#table-profiles tr td {
+    height: 28px;
+}
+.c1 {
+    width: 146px;
+}
+.c2 {
+    width: 192px;
+}
+.c3 {
+    width: 142px;
+}
+
+tr:active {
+    background-color: inherit;
+    color: inherit;
+}
+
+#TCR {
+    width: 60px;
+}
+
+.checkbox {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#connection-status {
+    padding-left: 6px;
+}
+
+#view-screen-layout select {
+    width: 186px;
+}
+
+#table-pireg {
+    padding-top: 28px;
+}
+
+#table-material {
+    width: 240px;
+}
+
+.sparkline {
+    height: 24px;
+    width: 160px;
+}
+
+#startscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 18px);
+    z-index: 10000;
+    background-color: white;
+    text-align: center;
+}
+
+#startscreen a:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+#startscreen a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+
+#startscreen a {
+    color: blue;
+    text-decoration: underline;
+}
+
+
+
+#version {
+    font-size: 10px;
+}
+
+/* Default dark mode overrides for Photon UI */
+:root {
+    --bg-color: #1e1e1e;
+    --fg-color: #e0e0e0;
+    --panel-color: #252526;
+    --border-color: #3c3c3c;
+    --accent-color: #0e639c;
+    --input-bg: #3c3c3c;
+    --input-fg: #e0e0e0;
+    --hover-bg: #2a2d2e;
+    --link-color: #4fc1ff;
+    --disabled-bg: #2a2a2a;
+    --disabled-fg: #808080;
+}
+
+html,
+body,
+.window,
+.window-content,
+.view-container,
+.view,
+.subview,
+.pane,
+.pane-body,
+.pane-group {
+    background-color: var(--bg-color) !important;
+    color: var(--fg-color) !important;
+}
+
+.toolbar,
+.toolbar-header,
+.toolbar-footer {
+    background-color: var(--panel-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--fg-color) !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    -webkit-app-region: no-drag !important;
+    app-region: no-drag !important;
+}
+
+.toolbar-actions,
+.toolbar-actions > .btn,
+.toolbar-actions > .btn-group {
+    -webkit-app-region: no-drag !important;
+    app-region: no-drag !important;
+}
+
+.toolbar .title {
+    color: var(--fg-color) !important;
+}
+
+.tab-group {
+    background-color: var(--panel-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.tab-item {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 20px !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+    background-image: none !important;
+    cursor: default !important;
+    box-sizing: border-box !important;
+}
+
+.tab-item:after {
+    display: none !important;
+}
+
+.tab-item.active {
+    background-color: var(--accent-color) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.tab-item:hover:not(.active) {
+    background-color: var(--hover-bg) !important;
+}
+
+.tab-item.active:hover {
+    background-color: var(--accent-color) !important;
+}
+
+.btn,
+.btn-default,
+.btn-primary,
+.btn-dropdown,
+.btn-large,
+.btn-mini,
+.btn-small {
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+    border-color: var(--border-color) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+.btn:hover,
+.btn-default:hover,
+.btn-primary:hover,
+.btn-dropdown:hover {
+    background-color: var(--hover-bg) !important;
+}
+
+input,
+textarea,
+.form-control,
+.form-group input,
+.form-group textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: none !important;
+}
+
+select,
+.form-group select,
+.form-control select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    padding: 2px 20px 2px 6px !important;
+    background-image: linear-gradient(45deg, transparent 50%, var(--fg-color) 50%),
+                      linear-gradient(135deg, var(--fg-color) 50%, transparent 50%) !important;
+    background-position: calc(100% - 10px) 50%, calc(100% - 6px) 50% !important;
+    background-size: 4px 4px, 4px 4px !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none !important;
+}
+
+select option {
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled,
+.form-control:disabled {
+    background-color: var(--disabled-bg) !important;
+    color: var(--disabled-fg) !important;
+}
+
+table,
+thead,
+tbody,
+tr,
+th,
+td,
+.table-striped tr:nth-child(even),
+.table-striped tr:nth-child(odd) {
+    background-color: var(--bg-color) !important;
+    color: var(--fg-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+tr:hover,
+.table-striped tr:hover:nth-child(even),
+.table-striped tr:hover:nth-child(odd) {
+    background-color: var(--hover-bg) !important;
+}
+
+#startscreen {
+    background-color: var(--bg-color) !important;
+    color: var(--fg-color) !important;
+}
+
+#startscreen a,
+#startscreen a:visited,
+#startscreen a:hover {
+    color: var(--link-color) !important;
+}
+
+hr {
+    border-color: var(--border-color) !important;
+}
+
+.nav-group {
+    background-color: var(--panel-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.nav-group-item {
+    color: var(--fg-color) !important;
+}
+
+.nav-group-item:hover {
+    background-color: var(--hover-bg) !important;
+}
+
+.checkbox input[type="checkbox"] + span,
+.radio input[type="radio"] + span,
+.checkbox label,
+.radio label {
+    color: var(--fg-color) !important;
+}
+
+.list-group {
+    background-color: var(--panel-color) !important;
+    color: var(--fg-color) !important;
+}
+
+.list-group-item {
+    background-color: var(--panel-color) !important;
+    color: var(--fg-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.list-group-item:hover,
+.list-group-item:focus,
+.list-group-item.active {
+    background-color: var(--hover-bg) !important;
+    color: #ffffff !important;
+}
+
+label,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--fg-color) !important;
+}
+
+/* Ensure dropdown menus and configuration menu are dark */
+#configuration-menu-dropdown,
+.nav-group,
+.dropdown-menu {
+    background-color: var(--panel-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--fg-color) !important;
+}
+
+#configuration-menu-dropdown li {
+    background-color: var(--panel-color) !important;
+    color: var(--fg-color) !important;
+}
+
+#configuration-menu-dropdown li:hover {
+    background-color: var(--hover-bg) !important;
+    color: #ffffff !important;
+}
+
+/* Scrollbars in WebKit */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--panel-color) !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
+}

@@ -1,0 +1,16 @@
+{
+  "identifier": "default",
+  "description": "Default capabilities for Arcticfox Config",
+  "windows": ["main", "bat", "tfr", "pc", "pireg"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-create",
+    "core:window:allow-close",
+    "dialog:default",
+    "fs:default",
+    "os:default",
+    "shell:default",
+    "shell:allow-spawn",
+    "shell:allow-execute"
+  ]
+}

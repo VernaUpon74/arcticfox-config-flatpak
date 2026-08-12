@@ -1,0 +1,10 @@
+# udev rule for Arcticfox-compatible vape mods (Winbond/Nuvoton HID Transfer)
+# Install to /etc/udev/rules.d/ then run:
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+
+# Grant the active console user access to the HID raw device.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", TAG+="uaccess", MODE="0660"
+
+# Grant the active console user access to the USB device for libusb backend.
+SUBSYSTEM=="usb", ATTR{idVendor}=="0416", ATTR{idProduct}=="5020", TAG+="uaccess", MODE="0660"

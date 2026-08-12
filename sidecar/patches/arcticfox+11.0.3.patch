@@ -1,0 +1,65 @@
+diff --git a/node_modules/arcticfox/index.js b/node_modules/arcticfox/index.js
+index 9363c3c..dafe424 100644
+--- a/node_modules/arcticfox/index.js
++++ b/node_modules/arcticfox/index.js
+@@ -96,7 +96,7 @@ class ArcticFox extends events.EventEmitter {
+     connect() {
+         try {
+             this.hid = new HID.HID(this.vendorId, this.productId);
+-            let message = Buffer.from([]);
++            this.message = Buffer.from([]);
+             this.hid.on('data', data => {
+                 clearTimeout(this.timeout);
+                 switch (this.expectedAnswer) {
+@@ -108,9 +108,9 @@ class ArcticFox extends events.EventEmitter {
+                         break;
+                     case 'configuration':
+                         if (this.callback) {
+-                            message = Buffer.concat([message, data]);
+-                            if (message.length >= this.configurationLength) {
+-                                this.parseConfiguration(message, (err, config) => {
++                            this.message = Buffer.concat([this.message, data]);
++                            if (this.message.length >= this.configurationLength) {
++                                this.parseConfiguration(this.message, (err, config) => {
+                                     this.callback(err, config);
+                                     this.callback = null;
+                                 });
+@@ -119,9 +119,9 @@ class ArcticFox extends events.EventEmitter {
+                         break;
+                     case 'screenshot':
+                         if (this.callback) {
+-                            message = Buffer.concat([message, data]);
+-                            if (message.length >= 0x400) {
+-                                this.callback(null, message);
++                            this.message = Buffer.concat([this.message, data]);
++                            if (this.message.length >= 0x400) {
++                                this.callback(null, this.message);
+                                 this.callback = null;
+                             }
+                         }
+@@ -259,6 +259,9 @@ class ArcticFox extends events.EventEmitter {
+         if (profile.IsTemperatureDominant) {
+             flags += 0x10;
+         }
++        if (profile.IsCelcius) {
++            flags += 0x20;
++        }
+         if (profile.IsResistanceLocked) {
+             flags += 0x40;
+         }
+@@ -330,6 +333,7 @@ class ArcticFox extends events.EventEmitter {
+         data.PreheatPower /= 10;
+         data.Material = data.Flags & 0x0F;
+         data.IsTemperatureDominant = Boolean(data.Flags & 0x10);
++        data.IsCelcius = Boolean(data.Flags & 0x20);
+         data.IsResistanceLocked = Boolean(data.Flags & 0x40);
+         data.IsEnabled = Boolean(data.Flags & 0x80);
+ 
+@@ -1163,6 +1167,7 @@ class ArcticFox extends events.EventEmitter {
+     }
+ 
+     readConfiguration(callback) {
++        this.message = Buffer.from([]);
+         if (this.hidWrite(this.createCommand(this.commands.readConfiguration, 0, this.configurationLength))) {
+             this.expectedAnswer = 'configuration';
+             this.callback = callback;
