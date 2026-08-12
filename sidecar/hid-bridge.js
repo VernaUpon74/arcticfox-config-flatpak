@@ -46,15 +46,13 @@ function clearReconnectTimer() {
 function scheduleReconnect() {
     clearReconnectTimer();
     if (!fox.connected) {
-        console.error('[sidecar] scheduling reconnect in', RECONNECT_INTERVAL_MS, 'ms');
         reconnectTimer = setTimeout(() => {
             reconnectTimer = null;
             if (!fox.connected) {
-                console.error('[sidecar] attempting reconnect');
                 try {
                     fox.connect();
                 } catch (err) {
-                    console.error('[sidecar] reconnect attempt failed:', err.toString());
+                    // Device still not present; retry later.
                 }
                 scheduleReconnect();
             }
@@ -99,7 +97,6 @@ function emit(channel, data) {
 
 function onConnect() {
     clearReconnectTimer();
-    console.error('[sidecar] device connected');
     emit('connect', true);
     if (autoconnect) {
         fox.setDateTime(new Date());
@@ -108,13 +105,11 @@ function onConnect() {
 }
 
 function onClose() {
-    console.error('[sidecar] device disconnected, scheduling reconnect');
     emit('connect', false);
     scheduleReconnect();
 }
 
 function onError(err) {
-    console.error('[sidecar] HID error:', err.toString());
     sendError('HID error', err);
 }
 
@@ -124,7 +119,6 @@ fox.disconnect = function() {
     if (fox.hid && fox.hid.close) {
         try { fox.hid.close(); } catch (e) {}
     }
-    fox.hid = null;
     if (fox.connected) {
         fox.connected = false;
         fox.emit('close');
@@ -162,6 +156,12 @@ function handleCommand(cmd) {
                     autoconnect = cmd.data.autoconnect;
                 }
                 fox.connect();
+                // DEVIATION: If autoconnect is enabled and no device was found at
+                // startup, start the reconnect loop so plugging in the device later
+                // is detected without restarting the app.
+                if (autoconnect && !fox.connected) {
+                    scheduleReconnect();
+                }
                 // connect() is synchronous; events will be emitted on stdout.
                 send('connect_ack', { connected: fox.connected });
             } catch (err) {
