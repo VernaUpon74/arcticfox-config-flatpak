@@ -22,6 +22,9 @@ const enumClickAction = {
     17: 'DeviceLock',
     18: 'ReReadResistanceAndSaveToProfile',
     19: 'ReReadResistanceAndSmart',
+    // DEVIATION: Autofire was added in newer ArcticFox firmware builds (post-2017).
+    // Value 20 is taken from the BatteryPresets/ClickAction enum in NFE-Tools v190602,
+    // which extends the original enum without reordering existing values.
     20: 'Autofire'
 };
 

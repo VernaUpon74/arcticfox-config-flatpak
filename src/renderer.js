@@ -40,6 +40,9 @@ ipc.on('batchange', (event, data) => {
 
 let foxfirmware = '';
 
+// DEVIATION: The original fork did not expose the per-profile Celsius/Fahrenheit
+// selector (IsCelcius, bit 0x20 of Flags). We normalize it here so the UI checkbox
+// works for configs loaded from the device or from older .afc files.
 function normalizeConfig(cfg) {
     if (!cfg || !Array.isArray(cfg.profiles)) return cfg;
     cfg.profiles.forEach(profile => {
@@ -124,6 +127,9 @@ function uiScreenLayoutView(skin) {
     $('.view-container.view-screen-layout #view-screen-layout-' + name).show();
 }
 
+// DEVIATION: The original fork had a fixed Classic/Circle/Foxy skin dropdown.
+// For 96x16 displays ArcticFox uses value 1 for the "Lite" skin, so we repopulate
+// the dropdown dynamically and relabel the Small layout tab accordingly.
 function uiUpdateSkinOptions() {
     const $skin = $('#MainScreenSkin');
     const isSmallDisplay = config && config.DisplaySize === 1;
@@ -624,6 +630,8 @@ async function uiInit() {
                 break;
             default:
         }
+        // DEVIATION: IsCelcius comes from a <select> with string values, so coerce it
+        // to a boolean explicitly before storing it on the profile.
         if (id === 'IsCelcius') {
             newVal = (newVal === true || newVal === 'true');
         }
@@ -679,6 +687,8 @@ function syncConfigFromUi() {
                 break;
             default:
         }
+        // DEVIATION: IsCelcius is stored as a boolean but rendered as a <select>;
+        // normalize the string value before upload.
         if (id === 'IsCelcius') {
             newVal = (newVal === true || newVal === 'true');
         }

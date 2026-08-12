@@ -231,6 +231,9 @@
                 </td>
                 <td class="c4"></td>
               </tr>
+              <!-- DEVIATION: The IsCelcius selector is not present in the original fork.
+                   It controls bit 0x20 of the profile Flags field, supported by current
+                   ArcticFox firmware builds. -->
               <tr class="fox-tconly">
                 <td class="c1" data-lang="Profile.TemperatureLabel">Temperature</td>
                 <td class="c2">
@@ -1485,6 +1488,9 @@
                 </tr>
               </table>
             </div>
+            <!-- DEVIATION: The "Autofire" click action is not present in the original
+                 hobbyquaker/arcticfox-config fork. It is added here for newer ArcticFox
+                 firmware builds; the option value (20) matches sidecar/afcfile.js. -->
             <div class="subview" id="view-controls-multiclicks" style="display:none">
               <div style="height: 12px"></div>
               <h5 style="padding-left:12px" data-lang="Controls.MultiClicks.VWModeClicksLabel">VW Mode Fire Button Multi Clicks</h5>
@@ -1494,6 +1500,8 @@
                   <td class="c2">
                     <select class="fox-val" id="ClicksVW0">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
+                      <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                       <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
@@ -1520,8 +1528,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1533,6 +1539,8 @@
                     <select class="fox-val" id="ClicksVW1">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1558,8 +1566,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1571,6 +1577,8 @@
                     <select class="fox-val" id="ClicksVW2">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1596,8 +1604,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1612,6 +1618,8 @@
                     <select class="fox-val" id="ClicksTC0">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1637,8 +1645,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1650,6 +1656,8 @@
                     <select class="fox-val" id="ClicksTC1">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1675,8 +1683,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1688,6 +1694,8 @@
                     <select class="fox-val" id="ClicksTC2">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1713,8 +1721,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1746,6 +1752,8 @@
                     <select class="fox-val" id="ShortcutsVW0InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1771,8 +1779,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1784,6 +1790,8 @@
                     <select class="fox-val" id="ShortcutsVW1InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1809,8 +1817,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1822,6 +1828,8 @@
                     <select class="fox-val" id="ShortcutsVW2InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1847,8 +1855,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1952,6 +1958,8 @@
                     <select class="fox-val" id="ShortcutsTC0InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -1977,8 +1985,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -1990,6 +1996,8 @@
                     <select class="fox-val" id="ShortcutsTC1InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -2015,8 +2023,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>
@@ -2028,6 +2034,8 @@
                     <select class="fox-val" id="ShortcutsTC2InStandby">
                       <option value="0" data-lang="ClickActions.None">None</option>                      
                       <option disabled>──────────</option>
+                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
+                      <option disabled>──────────</option>
                       <option value="7" data-lang="ClickActions.MainMenu">MainMenu</option>
                       <option value="1" data-lang="ClickActions.Edit">Edit</option>
                       <option value="8" data-lang="ClickActions.PreheatMenu">PreheatEdit</option>
@@ -2053,8 +2061,6 @@
                       <option value="14" data-lang="ClickActions.KeyLockUnlock">KeyLock</option>
                       <option value="17" data-lang="ClickActions.DeviceLockUnlock">DeviceLock</option>
                       <option value="5" data-lang="ClickActions.DeviceOnOff">OnOff</option>
-                      <option disabled>──────────</option>
-                      <option value="20" data-lang="ClickActions.Autofire">Autofire</option>
                     </select>
                   </td>
                   <td class="c3"></td>

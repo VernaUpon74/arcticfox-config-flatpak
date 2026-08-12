@@ -1,3 +1,7 @@
+// DEVIATION: This Rust/Tauri backend replaces the Electron main process from the
+// original hobbyquaker/arcticfox-config fork. It spawns the Node.js HID sidecar,
+// bridges its stdout events to the webview via Tauri events, and exposes file
+// system and dialog APIs that the renderer previously accessed through Node/Electron.
 use base64::Engine;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;

@@ -1,3 +1,9 @@
+# DEVIATION: Patch against the arcticfox npm module used by the Tauri sidecar.
+# Changes from upstream:
+#   1. Use instance property this.message so multiple configuration reads do not
+#      leak stale bytes from previous transfers.
+#   2. Parse and write the IsCelcius profile flag at bit 0x20, which the original
+#      module ignored; this matches newer ArcticFox firmware behavior.
 diff --git a/node_modules/arcticfox/index.js b/node_modules/arcticfox/index.js
 index 9363c3c..dafe424 100644
 --- a/node_modules/arcticfox/index.js

@@ -1,3 +1,13 @@
+/**
+ * DEVIATION: This sidecar is a Tauri-era replacement for the Electron main-process
+ * HID code in the original hobbyquaker/arcticfox-config fork. It runs as a separate
+ * Node.js process spawned by the Rust backend and communicates over stdin/stdout.
+ * Notable behavioral changes from the original fork:
+ *   - libusb backend is forced on Linux to match the old node-hid 0.5.x behavior.
+ *   - supportedSettingsVersion is bumped from 11 to 12 for current firmware builds.
+ *   - Device auto-reconnect is implemented explicitly in this bridge.
+ *   - Configuration strings are sanitized before being emitted to the renderer.
+ */
 const fs = require('fs');
 const path = require('path');
 // Force node-hid to use the libusb backend on Linux, matching the behavior
@@ -19,6 +29,36 @@ let autoconnect = true;
 fox.supportedSettingsVersion = 12;
 
 let currentRequestId = null;
+
+// DEVIATION: Explicit auto-reconnect logic. The original arcticfox module schedules
+// its own reconnect inside disconnect(); we override disconnect() below and use this
+// timer so the sidecar can reconnect when a device is unplugged and re-plugged.
+let reconnectTimer = null;
+const RECONNECT_INTERVAL_MS = 2000;
+
+function clearReconnectTimer() {
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
+    }
+}
+
+function scheduleReconnect() {
+    clearReconnectTimer();
+    if (!fox.connected) {
+        reconnectTimer = setTimeout(() => {
+            reconnectTimer = null;
+            if (!fox.connected) {
+                try {
+                    fox.connect();
+                } catch (err) {
+                    // Device still not present; retry later.
+                }
+                scheduleReconnect();
+            }
+        }, RECONNECT_INTERVAL_MS);
+    }
+}
 
 function send(event, payload) {
     if (currentRequestId) {
@@ -56,6 +96,7 @@ function emit(channel, data) {
 }
 
 function onConnect() {
+    clearReconnectTimer();
     emit('connect', true);
     if (autoconnect) {
         fox.setDateTime(new Date());
@@ -63,15 +104,26 @@ function onConnect() {
     }
 }
 
-
-
 function onClose() {
     emit('connect', false);
+    scheduleReconnect();
 }
 
 function onError(err) {
     sendError('HID error', err);
 }
+
+// Disable the arcticfox module's internal reconnect loop so this bridge controls
+// reconnection timing and avoids duplicate concurrent connection attempts.
+fox.disconnect = function() {
+    if (fox.hid && fox.hid.close) {
+        try { fox.hid.close(); } catch (e) {}
+    }
+    if (fox.connected) {
+        fox.connected = false;
+        fox.emit('close');
+    }
+};
 
 fox.on('connect', () => { onConnect(); });
 fox.on('close', () => { onClose(); });
