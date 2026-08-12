@@ -7,6 +7,7 @@
 This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. The fork also adds quality-of-life improvements such as an eternally dark UI, Freedom Unit selection that works,
 Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
+
 ![demo](demo.png)
 ![Screenshot](Screenshot.png)
 ![Screenshot_](Screenshot_.png)
@@ -97,6 +98,12 @@ flatpak build-bundle repo arcticfox-config.flatpak org.hobbyquaker.arcticfox-con
 Start the application and connect your Arcticfox device. The app will automatically detect the
 device and download its configuration. Use the tabs to edit profiles, power curves, TFR tables,
 and device settings, then click **Upload** to write the configuration back to the device.
+
+## Debug
+
+Work in progress. Issues welcome. 
+
+If device is not registering, plug in prior to startup.
 
 ## Project structure
 
