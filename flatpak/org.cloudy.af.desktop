@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Arcticfox Config
+Name=Cloudy AF
 Comment=Configuration Tool for Vape Battery Mods with Arcticfox Firmware
 Exec=arcticfox-config
-Icon=org.onebuttfarting.af
+Icon=org.cloudy.af
 Type=Application
 Categories=Utility;Electronics;
 Terminal=false

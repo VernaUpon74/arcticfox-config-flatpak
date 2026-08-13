@@ -1,0 +1,7 @@
+{
+  "name": "put",
+  "version": "0.0.7-security",
+  "description": "Minimal secure drop-in replacement for the put buffer-builder. Uses Buffer.alloc instead of uninitialized Buffer constructors.",
+  "main": "index.js",
+  "license": "MIT"
+}

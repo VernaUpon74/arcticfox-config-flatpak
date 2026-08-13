@@ -6,7 +6,7 @@ import { ipc, getLocale, getAppVersion, readTextFile, resolveResourcePath, showE
 
 let config;
 let lang;
-let appVersion = '1.12.0';
+let appVersion = '1.14.0';
 
 ipc.on('connect', (event, status) => {
     $('#connection-status').html(_('Status.Device') + ' ' + (status ? _('Status.Connected') : _('Status.Disconnected')));
@@ -109,9 +109,6 @@ function uiInitTabs() {
         const p = $(this).attr('id').replace('profile-', '');
         uiProfile(p);
     });
-
-    $('.tab-item[data-view="profiles"]').addClass('active');
-    $('#view-profiles').show();
 }
 
 function uiScreenLayoutView(skin) {
@@ -458,6 +455,18 @@ async function uiTranslate() {
             $(this).attr('title', phrase);
         }
     });
+
+    // Fallback: give every labeled setting row a tooltip using its label text so
+    // every checkbox/combobox/label has at least a basic vape-function hint.
+    $('tr').each(function () {
+        const $row = $(this);
+        if ($row.attr('title')) return;
+        const $label = $row.find('td.c1').first();
+        const labelText = $label.text().trim();
+        if (labelText && labelText.length > 0 && labelText.length < 120) {
+            $row.attr('title', labelText);
+        }
+    });
 }
 
 function _(key) {
@@ -470,7 +479,7 @@ function _(key) {
 
 function uiInitMenu() {
     // Replace Electron remote Menu with a simple DOM dropdown.
-    const menuHtml = '<ul id="configuration-menu-dropdown" class="nav-group" style="display:none;position:absolute;z-index:1000;background:#fff;border:1px solid #ccc;list-style:none;padding:4px 0;margin:0;min-width:120px;">' +
+    const menuHtml = '<ul id="configuration-menu-dropdown" class="nav-group" style="display:none;position:absolute;z-index:10000;background:#fff;border:1px solid #ccc;list-style:none;padding:4px 0;margin:0;min-width:120px;">' +
         '<li id="menu-new" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.New') + '</li>' +
         '<li id="menu-open" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.Open') + '</li>' +
         '<li id="menu-save" style="padding:4px 12px;cursor:pointer;">' + _('ConfigurationMenu.SaveAs') + '</li>' +
@@ -722,28 +731,43 @@ $(document).on('keydown', function (e) {
     }
 });
 
-// Stats icon easter egg: click rapidly to spin the icon.
 let statsIconRotation = 0;
 let statsIconVelocity = 0;
+let statsIconScale = 1;
 let statsIconLastClickTime = 0;
 let statsIconAnimating = false;
 
-const STATS_ICON_FRICTION = 0.92;
+const STATS_ICON_FRICTION = 0.94;
 const STATS_ICON_MIN_VELOCITY = 0.1;
-const STATS_ICON_MAX_BOOST = 30;
+const STATS_ICON_MAX_BOOST = 40;
+const STATS_ICON_MAX_SCALE = 2.0;
+
+function updateStatsIconTransform() {
+    const icon = document.getElementById('stats-icon');
+    if (icon) {
+        icon.style.transform = `rotate(${statsIconRotation.toFixed(2)}deg) scale(${statsIconScale.toFixed(3)})`;
+    }
+}
 
 function updateStatsIconFrame() {
     if (Math.abs(statsIconVelocity) < STATS_ICON_MIN_VELOCITY) {
         statsIconVelocity = 0;
+    }
+
+    if (statsIconVelocity === 0 && Math.abs(statsIconScale - 1) < 0.005) {
+        statsIconScale = 1;
         statsIconAnimating = false;
+        updateStatsIconTransform();
         return;
     }
+
     statsIconRotation = (statsIconRotation + statsIconVelocity) % 360;
-    const icon = document.getElementById('stats-icon');
-    if (icon) {
-        icon.style.transform = `rotate(${statsIconRotation}deg)`;
-    }
     statsIconVelocity *= STATS_ICON_FRICTION;
+
+    const targetScale = 1 + Math.min(statsIconVelocity / STATS_ICON_MAX_BOOST, 1) * (STATS_ICON_MAX_SCALE - 1);
+    statsIconScale += (targetScale - statsIconScale) * 0.2;
+
+    updateStatsIconTransform();
     requestAnimationFrame(updateStatsIconFrame);
 }
 
@@ -752,9 +776,12 @@ function onStatsIconClick() {
     const dt = now - statsIconLastClickTime;
     statsIconLastClickTime = now;
 
-    // Faster clicks give a bigger boost. dt is in ms; cap boost to avoid absurd speeds.
-    const boost = Math.min(Math.max(0, (500 - dt) / 50), STATS_ICON_MAX_BOOST);
+    const boost = Math.min(Math.max(0, (500 - dt) / 40), STATS_ICON_MAX_BOOST);
     statsIconVelocity += boost;
+
+    // Immediate size pop on each click.
+    statsIconScale = Math.min(statsIconScale + 0.08, STATS_ICON_MAX_SCALE);
+    updateStatsIconTransform();
 
     if (!statsIconAnimating) {
         statsIconAnimating = true;
@@ -769,6 +796,99 @@ function uiInitStatsIcon() {
     icon.addEventListener('error', () => {
         icon.style.display = 'none';
     });
+}
+
+let bootIconRotation = 0;
+let bootIconVelocity = 0;
+let bootIconScale = 1;
+let bootIconLastClickTime = 0;
+let bootIconAnimating = false;
+let bootIconSupercharged = false;
+let bootIconAltActive = false;
+
+const BOOT_ICON_SPRING = 0.015;
+const BOOT_ICON_DAMPING = 0.97;
+const BOOT_ICON_MIN_VELOCITY = 0.05;
+const BOOT_ICON_MAX_BOOST = 65;
+const BOOT_ICON_MAX_SCALE = 2.2;
+const BOOT_ICON_SUPERCHARGE_THRESHOLD = 25;
+
+function updateBootIconTransform() {
+    const icon = document.getElementById('boot-icon');
+    const alt = document.getElementById('boot-icon-alt');
+    const transform = `rotate(${bootIconRotation.toFixed(2)}deg) scale(${bootIconScale.toFixed(3)})`;
+    if (icon) icon.style.transform = transform;
+    if (alt) alt.style.transform = transform;
+}
+
+function shortestRotationToRest(rotation) {
+    // Signed shortest distance from `rotation` to the nearest multiple of 360.
+    const mod = rotation % 360;
+    const offset = (mod + 360) % 360;
+    if (offset > 180) return offset - 360;
+    return offset;
+}
+
+function updateBootIconFrame() {
+    const displacement = shortestRotationToRest(bootIconRotation);
+
+    bootIconVelocity -= BOOT_ICON_SPRING * displacement;
+    bootIconVelocity *= BOOT_ICON_DAMPING;
+    bootIconScale += (1 - bootIconScale) * 0.08;
+    bootIconRotation += bootIconVelocity;
+
+    if (bootIconVelocity > BOOT_ICON_SUPERCHARGE_THRESHOLD && !bootIconSupercharged) {
+        bootIconSupercharged = true;
+        bootIconAltActive = !bootIconAltActive;
+        setBootIconCrossfade(bootIconAltActive);
+    } else if (bootIconVelocity < BOOT_ICON_SUPERCHARGE_THRESHOLD * 0.5) {
+        bootIconSupercharged = false;
+    }
+
+    if (Math.abs(bootIconVelocity) < BOOT_ICON_MIN_VELOCITY &&
+        Math.abs(displacement) < 0.5 &&
+        Math.abs(bootIconScale - 1) < 0.005) {
+        bootIconRotation -= displacement;
+        bootIconScale = 1;
+        bootIconVelocity = 0;
+        bootIconAnimating = false;
+        updateBootIconTransform();
+        return;
+    }
+
+    updateBootIconTransform();
+    requestAnimationFrame(updateBootIconFrame);
+}
+
+function onBootIconClick() {
+    const now = performance.now();
+    const dt = now - bootIconLastClickTime;
+    bootIconLastClickTime = now;
+
+    const boost = Math.min(Math.max(0, (500 - dt) / 20), BOOT_ICON_MAX_BOOST);
+    bootIconVelocity += boost;
+
+    bootIconScale = Math.min(bootIconScale + 0.08, BOOT_ICON_MAX_SCALE);
+    updateBootIconTransform();
+
+    if (!bootIconAnimating) {
+        bootIconAnimating = true;
+        requestAnimationFrame(updateBootIconFrame);
+    }
+}
+
+function setBootIconCrossfade(showAlt) {
+    const icon = document.getElementById('boot-icon');
+    const alt = document.getElementById('boot-icon-alt');
+    if (!icon || !alt) return;
+    icon.style.opacity = showAlt ? '0' : '1';
+    alt.style.opacity = showAlt ? '1' : '0';
+}
+
+function uiInitBootIcon() {
+    const stack = document.getElementById('boot-icon-stack');
+    if (!stack) return;
+    stack.addEventListener('click', onBootIconClick);
 }
 
 // Wrap the main tab bar and the view container in a fixed-width, centered
@@ -817,4 +937,5 @@ window.addEventListener('resize', updateContentZoom);
 uiWrapContentForScaling();
 uiInit();
 uiInitStatsIcon();
+uiInitBootIcon();
 updateContentZoom();

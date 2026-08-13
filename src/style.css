@@ -2,6 +2,18 @@ body {
     font: caption;
 }
 
+.window {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+.window-content {
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+}
+
 tr td {
     height: 28px;
 }
@@ -156,19 +168,14 @@ body,
     color: var(--fg-color) !important;
 }
 
-/* Scale the entire content area (main tabs + views) as a single block.
-   The wrapper is fixed at the design width and centered horizontally, scaling
-   from the top-center so it stays aligned with the centered header/footer. */
 .content-scale-wrap {
     display: flex !important;
     flex-direction: column !important;
-    align-self: center !important;
     width: 536px !important;
     height: 100% !important;
-    margin: 0 auto !important;
     transform: scale(var(--content-scale, 1)) !important;
-    transform-origin: top center !important;
-    overflow: visible !important;
+    transform-origin: top left !important;
+    overflow: hidden !important;
 }
 
 .content-scale-wrap > .view-container.view-main {
@@ -179,10 +186,6 @@ body,
 
 .content-scale-wrap > #main {
     flex: 0 0 auto !important;
-}
-
-.window-content {
-    overflow: visible !important;
 }
 
 .toolbar,
@@ -202,6 +205,11 @@ body,
 .toolbar-actions > .btn-group {
     -webkit-app-region: no-drag !important;
     app-region: no-drag !important;
+}
+
+.toolbar-footer {
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .toolbar-footer .toolbar-actions > .btn {
@@ -335,6 +343,8 @@ select,
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
+    position: relative !important;
+    z-index: 1000 !important;
     background-color: var(--input-bg) !important;
     color: var(--input-fg) !important;
     border: 1px solid var(--border-color) !important;

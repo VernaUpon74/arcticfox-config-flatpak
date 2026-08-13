@@ -29,13 +29,13 @@ flatpak install --user arcticfox-config.flatpak
 
 ```bash
 flatpak remote-add --user --no-gpg-verify arcticfox-config-repo ./flatpak/repo
-flatpak install --user arcticfox-config-repo org.onebuttfarting.af
+flatpak install --user arcticfox-config-repo org.cloudy.af
 ```
 
 #### Run
 
 ```bash
-flatpak run org.onebuttfarting.af
+flatpak run org.cloudy.af
 ```
 
 #### USB permissions
@@ -89,8 +89,8 @@ The binary is written to `src-tauri/target/release/arcticfox-config`.
 
 ```bash
 cd flatpak
-flatpak-builder --force-clean --repo=repo build-dir org.onebuttfarting.af.yml
-flatpak build-bundle repo arcticfox-config.flatpak org.onebuttfarting.af
+flatpak-builder --force-clean --repo=repo build-dir org.cloudy.af.yml
+flatpak build-bundle repo arcticfox-config.flatpak org.cloudy.af
 ```
 
 ## Usage
@@ -127,10 +127,12 @@ Notable changes include:
 
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
-- Dark UI by default. Up Material Yours
+- Dark UI by default
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
 - Lite mode support in Appearance settings
+- Hover tooltips on all settings rows (specific vape-function descriptions where available)
+- Dependency security updates (`highcharts` 9.x, `xml2js` 0.6.2, local `put` replacement)
 
 ## Contributing
 

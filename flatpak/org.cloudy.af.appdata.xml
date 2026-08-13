@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.onebuttfarting.af</id>
+  <id>org.cloudy.af</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
-  <name>Arcticfox Config</name>
+  <name>Cloudy AF</name>
   <summary>Configuration tool for Arcticfox firmware vape mods</summary>
   <description>
     <p>
@@ -13,11 +13,11 @@
       over USB.
     </p>
   </description>
-  <launchable type="desktop-id">org.onebuttfarting.af.desktop</launchable>
+  <launchable type="desktop-id">org.cloudy.af.desktop</launchable>
   <url type="homepage">https://github.com/hobbyquaker/arcticfox-config</url>
   <developer_name>Sebastian Raff, OneButtFarting</developer_name>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="1.12.0" date="2026-08-12" />
+    <release version="1.14.0" date="2026-08-13" />
   </releases>
 </component>

@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Arcticfox Config",
-  "version": "1.12.0",
-  "identifier": "org.onebuttfarting.af",
+  "productName": "Cloudy AF",
+  "version": "1.14.0",
+  "identifier": "org.cloudy.af",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Arcticfox Config",
+        "title": "Cloudy AF",
         "width": 536,
         "height": 596,
         "minWidth": 536,

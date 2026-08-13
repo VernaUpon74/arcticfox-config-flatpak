@@ -576,7 +576,7 @@ pub fn run() {
         .manage(SidecarState::new())
         .setup(|app| {
             let window = app.get_webview_window("main").unwrap();
-            let _ = window.set_title("Arcticfox Config");
+            let _ = window.set_title("Cloudy AF");
 
             let app_handle = app.handle().clone();
             tauri::async_runtime::spawn(async move {

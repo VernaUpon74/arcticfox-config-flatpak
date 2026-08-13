@@ -1,6 +1,6 @@
 [package]
 name = "arcticfox-config"
-version = "1.12.0"
+version = "1.14.0"
 description = "Configuration Tool for Vape Battery Mods with Arcticfox Firmware"
 authors = ["Sebastian Raff"]
 license = "GPL-3.0"
