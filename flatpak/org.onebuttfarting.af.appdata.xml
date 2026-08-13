@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.hobbyquaker.arcticfox-config</id>
+  <id>org.onebuttfarting.af</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <name>Arcticfox Config</name>
@@ -13,7 +13,7 @@
       over USB.
     </p>
   </description>
-  <launchable type="desktop-id">org.hobbyquaker.arcticfox-config.desktop</launchable>
+  <launchable type="desktop-id">org.onebuttfarting.af.desktop</launchable>
   <url type="homepage">https://github.com/hobbyquaker/arcticfox-config</url>
   <developer_name>Sebastian Raff, OneButtFarting</developer_name>
   <content_rating type="oars-1.1" />

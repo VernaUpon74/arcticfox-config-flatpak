@@ -27,7 +27,9 @@
   <div class="window">
 
     <header class="toolbar toolbar-header">
-      <input type="text" class="title fox-val" id="Product" value="Unknown Device">
+      <div class="toolbar-title-row">
+        <input type="text" class="title fox-val" id="ProductName" placeholder="Unknown Device">
+      </div>
       <div class="toolbar-actions">
         <span data-lang="FWVerLabel">Firmware Ver:</span> <input size="8" type="text" class="fox-val" id="FirmwareBuild" disabled>
         <span data-lang="HWVerLabel">HW Ver:</span> <input size="8" type="text" class="fox-val" id="HardwareVersion" disabled>
@@ -242,7 +244,7 @@
                 <td class="c3">
                   <select class="fox-pval" id="IsCelcius">
                     <option value="true">°C</option>
-                    <option value="false">°F</option>
+                    <option value="false" selected="selected">°F</option>
                   </select>
                 </td>
                 <td class="c4"></td>
@@ -1398,7 +1400,7 @@
                     <div class="checkbox">
                       <label>
                         <select class="fox-val" id="TemperatureUnits">
-                          <option value="0">°F</option>
+                          <option value="0" selected="selected">°F</option>
                           <option value="1">°C</option>
                         </select>
                       </label>

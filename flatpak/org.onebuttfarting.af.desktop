@@ -2,7 +2,7 @@
 Name=Arcticfox Config
 Comment=Configuration Tool for Vape Battery Mods with Arcticfox Firmware
 Exec=arcticfox-config
-Icon=org.hobbyquaker.arcticfox-config
+Icon=org.onebuttfarting.af
 Type=Application
 Categories=Utility;Electronics;
 Terminal=false

@@ -156,6 +156,35 @@ body,
     color: var(--fg-color) !important;
 }
 
+/* Scale the entire content area (main tabs + views) as a single block.
+   The wrapper is fixed at the design width and centered horizontally, scaling
+   from the top-center so it stays aligned with the centered header/footer. */
+.content-scale-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: center !important;
+    width: 536px !important;
+    height: 100% !important;
+    margin: 0 auto !important;
+    transform: scale(var(--content-scale, 1)) !important;
+    transform-origin: top center !important;
+    overflow: visible !important;
+}
+
+.content-scale-wrap > .view-container.view-main {
+    flex: 1 1 auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-scale-wrap > #main {
+    flex: 0 0 auto !important;
+}
+
+.window-content {
+    overflow: visible !important;
+}
+
 .toolbar,
 .toolbar-header,
 .toolbar-footer {
@@ -183,18 +212,42 @@ body,
     color: var(--fg-color) !important;
 }
 
-#Product {
-    background: transparent !important;
-    border: none !important;
-    color: var(--fg-color) !important;
+.toolbar-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto !important;
+    padding: 2px 6px 4px 6px !important;
+}
+
+.toolbar-title-row {
+    width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 2px !important;
+}
+
+.toolbar-actions {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+#ProductName {
+    display: inline-block !important;
+    background-color: var(--input-bg) !important;
+    color: var(--input-fg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
     font: inherit !important;
     font-size: 16px !important;
     font-weight: bold !important;
     width: 220px !important;
-    text-align: left !important;
-    padding: 0 !important;
+    text-align: center !important;
+    padding: 2px 6px !important;
     margin: 0 !important;
     outline: none !important;
+    box-shadow: none !important;
 }
 
 .tab-group {

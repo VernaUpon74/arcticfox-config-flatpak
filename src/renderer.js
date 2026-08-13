@@ -50,7 +50,7 @@ function normalizeConfig(cfg) {
             if (typeof profile.Flags === 'number') {
                 profile.IsCelcius = Boolean(profile.Flags & 0x20);
             } else {
-                profile.IsCelcius = true;
+                profile.IsCelcius = false;
             }
         }
     });
@@ -295,7 +295,7 @@ function uiUpdate() {
 
     $('#startscreen').hide();
 
-    $('#Product').val(config.ProductName);
+    $('#ProductName').val(config.ProductName);
 
     uiUpdateSkinOptions();
 
@@ -722,4 +722,49 @@ $(document).on('keydown', function (e) {
     }
 });
 
+// Wrap the main tab bar and the view container in a fixed-width, centered
+// wrapper so they scale as a single block. The HTML keeps them as direct
+// children of .window-content for backward compatibility; we relocate them at
+// runtime so the transform/scale applies to the whole content area.
+function uiWrapContentForScaling() {
+    const main = document.getElementById('main');
+    const content = document.querySelector('.window-content');
+    const view = document.querySelector('.window-content > .view-container.view-main');
+    if (!main || !content || !view) return;
+    if (content.querySelector('.content-scale-wrap')) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'content-scale-wrap';
+    wrap.appendChild(main);
+    wrap.appendChild(view);
+    content.appendChild(wrap);
+}
+
+// Scale the whole content area (main tabs + views) to fit the window while
+// keeping the header/footer at their natural size. The content block is fixed
+// at the 536px design width and centered horizontally, matching the centered
+// header/footer layout.
+function updateContentZoom() {
+    const header = document.querySelector('.toolbar-header');
+    const footer = document.querySelector('.toolbar-footer');
+    const content = document.querySelector('.window-content');
+    if (!header || !footer || !content) return;
+
+    const baseWidth = 536;
+    const baseHeight = 596;
+    const headerHeight = header.offsetHeight;
+    const footerHeight = footer.offsetHeight;
+
+    const baseContentHeight = baseHeight - headerHeight - footerHeight;
+    const availableWidth = window.innerWidth;
+    const availableContentHeight = window.innerHeight - headerHeight - footerHeight;
+
+    const scale = Math.min(availableWidth / baseWidth, availableContentHeight / baseContentHeight);
+    document.documentElement.style.setProperty('--content-scale', scale.toFixed(4));
+}
+
+window.addEventListener('resize', updateContentZoom);
+
+uiWrapContentForScaling();
 uiInit();
+updateContentZoom();

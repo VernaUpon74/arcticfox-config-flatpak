@@ -1,4 +1,4 @@
-app-id: org.hobbyquaker.arcticfox-config
+app-id: org.onebuttfarting.af
 runtime: org.gnome.Platform
 runtime-version: '49'
 sdk: org.gnome.Sdk
@@ -48,9 +48,9 @@ modules:
         npm run tauri:build -- --no-bundle
         # Install application files.
         install -Dm755 src-tauri/target/release/arcticfox-config /app/bin/arcticfox-config
-        install -Dm644 flatpak/org.hobbyquaker.arcticfox-config.desktop /app/share/applications/org.hobbyquaker.arcticfox-config.desktop
-        install -Dm644 flatpak/org.hobbyquaker.arcticfox-config.appdata.xml /app/share/metainfo/org.hobbyquaker.arcticfox-config.metainfo.xml
-        install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/org.hobbyquaker.arcticfox-config.png
+        install -Dm644 flatpak/org.onebuttfarting.af.desktop /app/share/applications/org.onebuttfarting.af.desktop
+        install -Dm644 flatpak/org.onebuttfarting.af.appdata.xml /app/share/metainfo/org.onebuttfarting.af.metainfo.xml
+        install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/org.onebuttfarting.af.png
         # Bundle sidecar resources and Node runtime.
         mkdir -p /app/lib/arcticfox-config/resources
         cp -r sidecar /app/lib/arcticfox-config/resources/

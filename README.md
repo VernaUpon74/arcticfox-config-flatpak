@@ -29,13 +29,13 @@ flatpak install --user arcticfox-config.flatpak
 
 ```bash
 flatpak remote-add --user --no-gpg-verify arcticfox-config-repo ./flatpak/repo
-flatpak install --user arcticfox-config-repo org.hobbyquaker.arcticfox-config
+flatpak install --user arcticfox-config-repo org.onebuttfarting.af
 ```
 
 #### Run
 
 ```bash
-flatpak run org.hobbyquaker.arcticfox-config
+flatpak run org.onebuttfarting.af
 ```
 
 #### USB permissions
@@ -89,8 +89,8 @@ The binary is written to `src-tauri/target/release/arcticfox-config`.
 
 ```bash
 cd flatpak
-flatpak-builder --force-clean --repo=repo build-dir org.hobbyquaker.arcticfox-config.yml
-flatpak build-bundle repo arcticfox-config.flatpak org.hobbyquaker.arcticfox-config
+flatpak-builder --force-clean --repo=repo build-dir org.onebuttfarting.af.yml
+flatpak build-bundle repo arcticfox-config.flatpak org.onebuttfarting.af
 ```
 
 ## Usage
