@@ -4,7 +4,8 @@
 
 > Configuration Tool for Vape Battery Mods with Arcticfox Firmware.
 
-This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works,
+This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
+The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works,
 Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
 
@@ -128,6 +129,7 @@ Notable changes include:
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
 - Dark UI by default
+- Window scaling
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
 - Lite mode support in Appearance settings
@@ -157,7 +159,8 @@ Based on the work of [NFE Team](https://nfeteam.org/) and [hobbyquaker](https://
 
 This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
 
-Kimi Code assisted in software rewrite
+Kimi Code assisted in software rewrite.
+Images all edited by mouse using OSS.
 
 ## Donations 
 
