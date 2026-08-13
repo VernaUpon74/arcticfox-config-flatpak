@@ -1,12 +1,10 @@
 # cloudy-af
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-> Configuration Tool for Vape Battery Mods with ArcticFox Firmware.
-
-This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
-The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works,
-Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
-
+> The project is Cloudy AF (originally Arcticfox Config), a Linux desktop configuration utility for vape battery mods that run the ArcticFox firmware. It is a community fork that modernizes the decade-old Electron-based app into a Tauri desktop application, packaged as a Flatpak.                                                                       
+   
+  This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
+  The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works, Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
 ![demo](demo.png)
 ![Screenshot](Screenshot.png)
@@ -53,7 +51,7 @@ Then unplug and reconnect your device.
 
 ### macOS
 
-macOS builds are not currently produced by this fork. You get what you pay for. The original project provided a `.dmg` and
+macOS builds are not currently produced by this fork. The original project provided a `.dmg` and
 Homebrew formula; see [hobbyquaker/arcticfox-config](https://github.com/hobbyquaker/arcticfox-config)
 for the upstream macOS instructions.
 
@@ -111,6 +109,14 @@ Work in progress. Issues welcome.
 - `flatpak/` – Flatpak manifest, desktop entry, appdata, and udev rules
 - `public/` – Static assets (i18n, default config)
 
+- ## Programming language / stack composition:                                                                                                                                                                                               
+                                                                                                                                                                                                                                        
+• Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.                                                                                                                                                                 
+• JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).                                                                                                                        
+• Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.                                                                                                                        
+• YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).                                                                                                                                                
+• JSON — i18n translations, default configuration, and package manifests.     
+
 ## Fork differences
 
 Key deviations from the original `hobbyquaker/arcticfox-config` are documented inline with
@@ -135,9 +141,15 @@ Notable changes include:
 - Hover tooltips on all settings rows (specific vape-function descriptions where available)
 - Dependency security updates (`highcharts` 9.x, `xml2js` 0.6.2, local `put` replacement)
 
+
+Planned developments include:
+- Firmware update tool
+- Screen animations
+- Auto TFR curve plotting
+
 ## Contributing
 
-Clone the repo, run `npm install`, and use `npm run tauri:dev` for development.
+Clone the repo, run `npm install`, and use `npm run tauri:dev` for development. Submit issues and pull requests. Go crazy.
 
 ## Related
 
