@@ -1,7 +1,7 @@
 # cloudy-af
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-> Configuration Tool for Vape Battery Mods with Arcticfox Firmware.
+> Configuration Tool for Vape Battery Mods with ArcticFox Firmware.
 
 This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
 The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works,
@@ -53,7 +53,7 @@ Then unplug and reconnect your device.
 
 ### macOS
 
-macOS builds are not currently produced by this fork. The original project provided a `.dmg` and
+macOS builds are not currently produced by this fork. You get what you pay for. The original project provided a `.dmg` and
 Homebrew formula; see [hobbyquaker/arcticfox-config](https://github.com/hobbyquaker/arcticfox-config)
 for the upstream macOS instructions.
 
@@ -95,7 +95,7 @@ flatpak build-bundle repo arcticfox-config.flatpak org.cloudy.af
 
 ## Usage
 
-Start the application and connect your Arcticfox device. The app will automatically detect the
+Start the application and connect your ArcticFox device. The app will automatically detect the
 device and download its configuration. Use the tabs to edit profiles, power curves, TFR tables,
 and device settings, then click **Upload** to write the configuration back to the device.
 
@@ -127,7 +127,7 @@ Notable changes include:
 
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
-- Dark UI by default
+- Dark UI by default. Up Material UIrs, nerd
 - Window scaling
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
