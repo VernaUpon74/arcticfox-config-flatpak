@@ -109,13 +109,13 @@ Work in progress. Issues welcome.
 - `flatpak/` – Flatpak manifest, desktop entry, appdata, and udev rules
 - `public/` – Static assets (i18n, default config)
 
-- ## Programming language / stack composition:                                                                                                                                                                                               
+  ## Programming language / stack composition:                                                                                                                                                                                               
                                                                                                                                                                                                                                         
-• Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.                                                                                                                                                                 
-• JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).                                                                                                                        
-• Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.                                                                                                                        
-• YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).                                                                                                                                                
-• JSON — i18n translations, default configuration, and package manifests.     
+- Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.                                                                                                                                                                 
+- JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).                                                                                                                        
+- Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.                                                                                                                        
+- YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).                                                                                                                                                
+- JSON — i18n translations, default configuration, and package manifests.     
 
 ## Fork differences
 
