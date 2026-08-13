@@ -135,6 +135,7 @@ Notable changes include:
 - Flatpak packaging with bundled Node.js sidecar for HID access
 - Dark UI by default. Up Material UIrs, nerd
 - Window scaling
+- Freedom units by default
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
 - Lite mode support in Appearance settings
