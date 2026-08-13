@@ -722,6 +722,55 @@ $(document).on('keydown', function (e) {
     }
 });
 
+// Stats icon easter egg: click rapidly to spin the icon.
+let statsIconRotation = 0;
+let statsIconVelocity = 0;
+let statsIconLastClickTime = 0;
+let statsIconAnimating = false;
+
+const STATS_ICON_FRICTION = 0.92;
+const STATS_ICON_MIN_VELOCITY = 0.1;
+const STATS_ICON_MAX_BOOST = 30;
+
+function updateStatsIconFrame() {
+    if (Math.abs(statsIconVelocity) < STATS_ICON_MIN_VELOCITY) {
+        statsIconVelocity = 0;
+        statsIconAnimating = false;
+        return;
+    }
+    statsIconRotation = (statsIconRotation + statsIconVelocity) % 360;
+    const icon = document.getElementById('stats-icon');
+    if (icon) {
+        icon.style.transform = `rotate(${statsIconRotation}deg)`;
+    }
+    statsIconVelocity *= STATS_ICON_FRICTION;
+    requestAnimationFrame(updateStatsIconFrame);
+}
+
+function onStatsIconClick() {
+    const now = performance.now();
+    const dt = now - statsIconLastClickTime;
+    statsIconLastClickTime = now;
+
+    // Faster clicks give a bigger boost. dt is in ms; cap boost to avoid absurd speeds.
+    const boost = Math.min(Math.max(0, (500 - dt) / 50), STATS_ICON_MAX_BOOST);
+    statsIconVelocity += boost;
+
+    if (!statsIconAnimating) {
+        statsIconAnimating = true;
+        requestAnimationFrame(updateStatsIconFrame);
+    }
+}
+
+function uiInitStatsIcon() {
+    const icon = document.getElementById('stats-icon');
+    if (!icon) return;
+    icon.addEventListener('click', onStatsIconClick);
+    icon.addEventListener('error', () => {
+        icon.style.display = 'none';
+    });
+}
+
 // Wrap the main tab bar and the view container in a fixed-width, centered
 // wrapper so they scale as a single block. The HTML keeps them as direct
 // children of .window-content for backward compatibility; we relocate them at
@@ -767,4 +816,5 @@ window.addEventListener('resize', updateContentZoom);
 
 uiWrapContentForScaling();
 uiInit();
+uiInitStatsIcon();
 updateContentZoom();
