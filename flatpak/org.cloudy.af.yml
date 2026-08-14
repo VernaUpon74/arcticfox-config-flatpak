@@ -15,7 +15,6 @@ finish-args:
   - --persist=.config/arcticfox-config
   - --talk-name=org.freedesktop.portal.Desktop
   - --talk-name=org.freedesktop.portal.FileChooser
-  - --talk-name=org.freedesktop.Flatpak
   - --env=PATH=/app/bin:/usr/bin
 
 modules:
