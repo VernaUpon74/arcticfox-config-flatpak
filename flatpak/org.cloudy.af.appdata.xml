@@ -14,9 +14,25 @@
     </p>
   </description>
   <launchable type="desktop-id">org.cloudy.af.desktop</launchable>
-  <url type="homepage">https://github.com/hobbyquaker/arcticfox-config</url>
+  <url type="homepage">https://github.com/VernaUpon74/cloudy-af</url>
   <developer_name>Sebastian Raff, OneButtFarting</developer_name>
   <content_rating type="oars-1.1" />
+  <categories>
+    <category>Utility</category>
+    <category>Electronics</category>
+  </categories>
+  <keywords>
+    <keyword>arcticfox</keyword>
+    <keyword>vape</keyword>
+    <keyword>mod</keyword>
+    <keyword>profile editor</keyword>
+    <keyword>nfe team</keyword>
+    <keyword>nfetools</keyword>
+    <keyword>eleaf</keyword>
+    <keyword>istick</keyword>
+    <keyword>pico</keyword>
+    <keyword>linux</keyword>
+  </keywords>
   <releases>
     <release version="1.14.0" date="2026-08-13" />
   </releases>
