@@ -34,6 +34,11 @@
     <keyword>linux</keyword>
   </keywords>
   <releases>
+    <release version="1.14.1" date="2026-08-14">
+      <description>
+        <p>Flatpak permission hardening: removed the WebKit sandbox bypass, removed Flatpak spawn access, and allowed native Wayland use.</p>
+      </description>
+    </release>
     <release version="1.14.0" date="2026-08-13" />
   </releases>
 </component>

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.14.1 — 2026-08-14
+
+### Security / Permission Policy
+- Flatpak manifest no longer disables the WebKit sandbox (`WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1`).
+- Removed `--talk-name=org.freedesktop.Flatpak` from Flatpak permissions.
+- Removed `GDK_BACKEND=x11` so the app can use Wayland natively.
+
 ## 1.14.0 — 2026-08-13
 
 ### Added
