@@ -16,9 +16,11 @@
 
 Pre-built Flatpak bundle is available on the
 [releases page](https://github.com/VernaUpon74/cloudy-af/releases/)
-and in the local `builds/` directory after running the build scripts. Or click [here](https://github.com/VernaUpon74/cloudy-af/releases/download/v1.14.1-flatpak/cloudy-af.flatpak) for a direct link.
+and in the local `builds/` directory after running the build scripts. 
 
-Portable Appimage binary also provided on the [releases page](https://github.com/VernaUpon74/cloudy-af/releases/) alongside installable .deb and .rpm files.
+Or click [here](https://github.com/VernaUpon74/cloudy-af/releases/download/v1.14.1-flatpak/cloudy-af.flatpak) for a direct link.
+
+Portable Appimage binary also provided on the releases page. Installable .deb and .rpm files can be found there as well.
 
 #### Install from the `.flatpak` bundle
 
