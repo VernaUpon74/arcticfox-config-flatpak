@@ -16,9 +16,9 @@
 
 Pre-built Flatpak bundle is available on the
 [releases page](https://github.com/VernaUpon74/cloudy-af/releases/)
-and in the local `builds/` directory after running the build scripts.
+and in the local `builds/` directory after running the build scripts. Or click [here](https://github.com/VernaUpon74/cloudy-af/releases/download/v1.14.1-flatpak/cloudy-af.flatpak) for a direct link.
 
-Appimage binary also provided there.
+Portable Appimage binary also provided on the [releases page](https://github.com/VernaUpon74/cloudy-af/releases/) alongside installable .deb and .rpm files.
 
 #### Install from the `.flatpak` bundle
 
@@ -61,6 +61,7 @@ Native Linux packages are produced by `scripts/build-appimage.sh` and placed in 
 - `Cloudy_AF-<version>-x86_64.AppImage` — portable, no install required
 - `Cloudy AF_<version>_amd64.deb` — Debian/Ubuntu installer
 - `Cloudy AF-<version>-1.x86_64.rpm` — Fedora/openSUSE installer
+These can also be found [here](https://github.com/VernaUpon74/cloudy-af/releases).
 
 #### AppImage
 
