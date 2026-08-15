@@ -15,7 +15,7 @@
 ### Linux (Flatpak)
 
 A pre-built Flatpak bundle is available on the
-[releases page](https://github.com/VernaUpon74/arcticfox-config-rework/releases).
+[releases page](https://github.com/VernaUpon74/cloudy-af/releases).
 
 #### Install from the `.flatpak` bundle
 
