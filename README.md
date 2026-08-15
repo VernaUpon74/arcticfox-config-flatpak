@@ -10,7 +10,7 @@
 ![Screenshot](Screenshot.png)
 ![Screenshot_](Screenshot_.png)
 
-## Download / Install
+# Download / Install
 
 ### Linux (Flatpak)
 
