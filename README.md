@@ -26,7 +26,8 @@ Portable Appimage binary also provided on the releases page. Installable .deb an
 
 ```bash
 flatpak install --user ~/Downloads/cloudy-af.flatpak
-
+```
+<!-- I'll start using the preview tab more instead of all these commits-->
 #### Install from the `.flatpak` bundle after building from source
 
 ```bash
