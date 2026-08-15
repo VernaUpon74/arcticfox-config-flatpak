@@ -12,11 +12,13 @@
 
 # Download / Install
 
-### Linux (Flatpak)
+### Linux
 
-Pre-built Flatpak bundles are available on the
-[releases page](https://github.com/VernaUpon74/cloudy-af/releases)
+Pre-built Flatpak bundle is available on the
+[releases page](https://github.com/VernaUpon74/cloudy-af/releases/)
 and in the local `builds/` directory after running the build scripts.
+
+Appimage binary also provided there.
 
 #### Install from the `.flatpak` bundle
 
