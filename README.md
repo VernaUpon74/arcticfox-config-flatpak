@@ -34,25 +34,16 @@ flatpak install --user ~/Downloads/cloudy-af.flatpak
 flatpak install --user builds/cloudy-af.flatpak
 ```
 
-#### Install from the local Flatpak repository
-
-If you built the Flatpak locally, add the local repository and install from it:
-
-```bash
-flatpak remote-add --user --no-gpg-verify cloudy-af-repo flatpak/repo
-flatpak install --user cloudy-af-repo org.cloudy.af
-```
-
 #### Run
 
 ```bash
 flatpak run org.cloudy.af
 ```
 
-#### USB permissions
+#### USB permissions- use if device not connecting
 
 The Flatpak manifest requests `--device=all`, but HID access also requires udev rules for
-unprivileged users. Install the provided rules:
+unprivileged users. Install the provided rules after downloading source:
 
 ```bash
 sudo cp flatpak/50-cloudy-af.rules /etc/udev/rules.d/
