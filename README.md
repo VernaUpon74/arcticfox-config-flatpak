@@ -12,7 +12,7 @@
 
 # Download / Install
 
-### Linux
+### Linux Binaries (Flatpak, Appimage)
 
 Pre-built Flatpak bundle is available on the
 [releases page](https://github.com/VernaUpon74/cloudy-af/releases/)
@@ -22,13 +22,13 @@ Or click [here](https://github.com/VernaUpon74/cloudy-af/releases/download/v1.14
 
 Portable Appimage binary also provided on the releases page. Installable .deb and .rpm files can be found there as well.
 
-#### Install from the `.flatpak` bundle
+#### Install from the `.flatpak` bundle after building from source
 
 ```bash
 flatpak install --user builds/cloudy-af.flatpak
 ```
 
-#### Install from a local Flatpak repository
+#### Install from the local Flatpak repository
 
 If you built the Flatpak locally, add the local repository and install from it:
 
@@ -197,7 +197,9 @@ and device settings, then click **Upload** to write the configuration back to th
 
 ## Debug
 
-Work in progress. Issues welcome.
+Work in progress. Issues welcome.  
+
+If no device detected, follow the USB permissions instruction above.
 
 ## Project structure
 
