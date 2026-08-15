@@ -1,10 +1,12 @@
-# cloudy-af
+# arcticfox-config-flatpak
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-> The project is Cloudy AF (originally Arcticfox Config), a Linux desktop configuration utility for vape battery mods that run the ArcticFox firmware. It is a community fork that modernizes the decade-old Electron-based app into a Tauri desktop application, packaged as a Flatpak.                                                                       
-   
-  This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a sandboxed [Flatpak](https://flatpak.org) image for Linux, permission-controllable (through [Flatseal](https://github.com/tchx84/Flatseal)), because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
-  The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works (original defaulted to Celsius and capped F at 400), Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
+> Configuration Tool for Vape Battery Mods with Arcticfox Firmware.
+
+This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a more secure [Flatpak](https://flatpak.org) image for Linux because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. The fork also adds quality-of-life improvements such as an eternally dark UI, Freedom Unit selection that works,
+Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
+
 
 ![demo](demo.png)
 ![Screenshot](Screenshot.png)
@@ -15,7 +17,7 @@
 ### Linux (Flatpak)
 
 A pre-built Flatpak bundle is available on the
-[releases page](https://github.com/VernaUpon74/cloudy-af/releases).
+[releases page](https://github.com/VernaUpon74/arcticfox-config-rework/releases).
 
 #### Install from the `.flatpak` bundle
 
@@ -27,13 +29,13 @@ flatpak install --user arcticfox-config.flatpak
 
 ```bash
 flatpak remote-add --user --no-gpg-verify arcticfox-config-repo ./flatpak/repo
-flatpak install --user arcticfox-config-repo org.cloudy.af
+flatpak install --user arcticfox-config-repo org.hobbyquaker.arcticfox-config
 ```
 
 #### Run
 
 ```bash
-flatpak run org.cloudy.af
+flatpak run org.hobbyquaker.arcticfox-config
 ```
 
 #### USB permissions
@@ -87,19 +89,21 @@ The binary is written to `src-tauri/target/release/arcticfox-config`.
 
 ```bash
 cd flatpak
-flatpak-builder --force-clean --repo=repo build-dir org.cloudy.af.yml
-flatpak build-bundle repo arcticfox-config.flatpak org.cloudy.af
+flatpak-builder --force-clean --repo=repo build-dir org.hobbyquaker.arcticfox-config.yml
+flatpak build-bundle repo arcticfox-config.flatpak org.hobbyquaker.arcticfox-config
 ```
 
 ## Usage
 
-Start the application and connect your ArcticFox device. The app will automatically detect the
+Start the application and connect your Arcticfox device. The app will automatically detect the
 device and download its configuration. Use the tabs to edit profiles, power curves, TFR tables,
 and device settings, then click **Upload** to write the configuration back to the device.
 
 ## Debug
 
 Work in progress. Issues welcome. 
+
+If device is not registering, plug in prior to startup.
 
 ## Project structure
 
@@ -108,14 +112,6 @@ Work in progress. Issues welcome.
 - `sidecar/` – Node.js HID bridge run as a Tauri sidecar
 - `flatpak/` – Flatpak manifest, desktop entry, appdata, and udev rules
 - `public/` – Static assets (i18n, default config)
-
-  ## Programming language / stack composition:                                                                                                                                                                                               
-                                                                                                                                                                                                                                        
-- Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.                                                                                                                                                                 
-- JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).                                                                                                                        
-- Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.                                                                                                                        
-- YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).                                                                                                                                                
-- JSON — i18n translations, default configuration, and package manifests.     
 
 ## Fork differences
 
@@ -133,24 +129,14 @@ Notable changes include:
 
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
-- Dark UI by default. Up Material UIrs, nerd
-- Window scaling
-- Freedom units by default
+- Dark UI by default. Up Material Yours
 - Autofire added to multi-click / shortcut dropdowns
 - Device auto-reconnect on unexpected disconnect
 - Lite mode support in Appearance settings
-- Hover tooltips on all settings rows (specific vape-function descriptions where available)
-- Dependency security updates (`highcharts` 9.x, `xml2js` 0.6.2, local `put` replacement)
-
-
-Planned developments include:
-- Firmware update tool
-- Screen animations
-- Auto TFR curve plotting
 
 ## Contributing
 
-Clone the repo, run `npm install`, and use `npm run tauri:dev` for development. Submit issues and pull requests. Go crazy.
+Clone the repo, run `npm install`, and use `npm run tauri:dev` for development.
 
 ## Related
 
@@ -171,8 +157,7 @@ Based on the work of [NFE Team](https://nfeteam.org/) and [hobbyquaker](https://
 
 This software uses [Highcharts](http://www.highcharts.com/) which is free __only for non-commercial use__.
 
-Kimi Code assisted in software rewrite.
-Images all edited by mouse using OSS.
+Kimi Code assisted in software rewrite
 
 ## Donations 
 
@@ -185,7 +170,5 @@ Accepting cryptocurrency donations for rework
 GPLv3
 
 Copyright (c) Sebastian Raff
-
-Flatpak packaging and rework by OneButtFarting
 
 ![TuxAndFox](Tux&Fox.png)

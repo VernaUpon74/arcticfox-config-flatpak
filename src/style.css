@@ -2,18 +2,6 @@ body {
     font: caption;
 }
 
-.window {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-}
-
-.window-content {
-    flex: 1 1 auto !important;
-    overflow: hidden !important;
-}
-
 tr td {
     height: 28px;
 }
@@ -168,26 +156,6 @@ body,
     color: var(--fg-color) !important;
 }
 
-.content-scale-wrap {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 536px !important;
-    height: 100% !important;
-    transform: scale(var(--content-scale, 1)) !important;
-    transform-origin: top left !important;
-    overflow: hidden !important;
-}
-
-.content-scale-wrap > .view-container.view-main {
-    flex: 1 1 auto !important;
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.content-scale-wrap > #main {
-    flex: 0 0 auto !important;
-}
-
 .toolbar,
 .toolbar-header,
 .toolbar-footer {
@@ -207,55 +175,8 @@ body,
     app-region: no-drag !important;
 }
 
-.toolbar-footer {
-    position: relative !important;
-    z-index: 10 !important;
-}
-
-.toolbar-footer .toolbar-actions > .btn {
-    text-decoration: none !important;
-}
-
 .toolbar .title {
     color: var(--fg-color) !important;
-}
-
-.toolbar-header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    height: auto !important;
-    padding: 2px 6px 4px 6px !important;
-}
-
-.toolbar-title-row {
-    width: 100% !important;
-    text-align: center !important;
-    margin-bottom: 2px !important;
-}
-
-.toolbar-actions {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-}
-
-#ProductName {
-    display: inline-block !important;
-    background-color: var(--input-bg) !important;
-    color: var(--input-fg) !important;
-    border: 1px solid var(--border-color) !important;
-    border-radius: 4px !important;
-    font: inherit !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    width: 220px !important;
-    text-align: center !important;
-    padding: 2px 6px !important;
-    margin: 0 !important;
-    outline: none !important;
-    box-shadow: none !important;
 }
 
 .tab-group {
@@ -343,8 +264,6 @@ select,
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
-    position: relative !important;
-    z-index: 1000 !important;
     background-color: var(--input-bg) !important;
     color: var(--input-fg) !important;
     border: 1px solid var(--border-color) !important;
@@ -491,20 +410,4 @@ h6 {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555 !important;
-}
-
-#view-stats {
-    position: relative !important;
-}
-
-#stats-icon {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    pointer-events: auto;
-    user-select: none;
-    -webkit-user-drag: none;
 }

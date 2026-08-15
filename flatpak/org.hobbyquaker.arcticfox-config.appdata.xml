@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.hobbyquaker.arcticfox-config</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>Arcticfox Config</name>
+  <summary>Configuration tool for Arcticfox firmware vape mods</summary>
+  <description>
+    <p>
+      Arcticfox Config is a desktop configuration tool for vape battery mods
+      running the Arcticfox firmware. It allows you to read and write device
+      settings, edit profiles, power curves, TFR tables, and battery profiles
+      over USB.
+    </p>
+  </description>
+  <launchable type="desktop-id">org.hobbyquaker.arcticfox-config.desktop</launchable>
+  <url type="homepage">https://github.com/hobbyquaker/arcticfox-config</url>
+  <developer_name>Sebastian Raff</developer_name>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="1.11.10" date="2026-08-11" />
+  </releases>
+</component>

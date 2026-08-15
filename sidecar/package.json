@@ -1,6 +1,6 @@
 {
   "name": "arcticfox-hid-sidecar",
-  "version": "1.14.1",
+  "version": "1.11.10",
   "private": true,
   "description": "HID sidecar for Arcticfox Config Tauri app",
   "main": "hid-bridge.js",
@@ -13,12 +13,10 @@
     "arcticfox": "^11.0.3",
     "arcticfox-encryption": "^1.0.1",
     "node-hid": "^2.2.0",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.4.17"
   },
   "overrides": {
-    "node-hid": "^2.2.0",
-    "put": "file:./put-replacement",
-    "xml2js": "^0.6.2"
+    "node-hid": "^2.2.0"
   },
   "devDependencies": {
     "patch-package": "^8.0.1"

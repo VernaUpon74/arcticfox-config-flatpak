@@ -8,6 +8,7 @@ const handlers = {};
 export const ipc = {
     send(channel, data) {
         invoke('ipc_send', { request: { channel, data } })
+            .then(() => console.log('ipc.send ok', channel))
             .catch(err => console.error('ipc.send error', channel, err));
     },
     on(channel, callback) {
@@ -39,7 +40,7 @@ export async function getAppVersion() {
     try {
         return await getVersion();
     } catch (e) {
-        return '1.14.0';
+        return '1.11.10';
     }
 }
 

@@ -2,16 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Cloudy AF</title>
+    <title>Arcticfox Config</title>
   </head>
 
   <body>
   <div id="startscreen">
-    <h5>Cloudy AF</h5>
+    <h5>Arcticfox Config</h5>
     <span id="version"></span>
-    <p style="position: relative; display: inline-block; width: 192px; height: 192px; cursor: pointer;" id="boot-icon-stack">
-      <img id="boot-icon" src="icon.png" width="256" style="position: absolute; top: 0; left: 0; width: 192px; height: 192px; object-fit: contain; transition: opacity 0.22s ease; transform-origin: center center;">
-      <img id="boot-icon-alt" src="Tux&Foxx.png" width="256" style="position: absolute; top: 0; left: 0; width: 192px; height: 192px; object-fit: contain; opacity: 0; transition: opacity 0.22s ease; transform-origin: center center; pointer-events: none;">
+    <p>
+      <img src="icon.png" width="256" style="width: 192px;">
     </p>
     <p data-lang="Message.ConnectDevice"></p>
     <p>&nbsp;</p>
@@ -28,9 +27,7 @@
   <div class="window">
 
     <header class="toolbar toolbar-header">
-      <div class="toolbar-title-row">
-        <input type="text" class="title fox-val" id="ProductName" placeholder="Unknown Device">
-      </div>
+      <h1 class="title" id="Product">Unknown Device</h1>
       <div class="toolbar-actions">
         <span data-lang="FWVerLabel">Firmware Ver:</span> <input size="8" type="text" class="fox-val" id="FirmwareBuild" disabled>
         <span data-lang="HWVerLabel">HW Ver:</span> <input size="8" type="text" class="fox-val" id="HardwareVersion" disabled>
@@ -245,7 +242,7 @@
                 <td class="c3">
                   <select class="fox-pval" id="IsCelcius">
                     <option value="true">°C</option>
-                    <option value="false" selected="selected">°F</option>
+                    <option value="false">°F</option>
                   </select>
                 </td>
                 <td class="c4"></td>
@@ -1401,7 +1398,7 @@
                     <div class="checkbox">
                       <label>
                         <select class="fox-val" id="TemperatureUnits">
-                          <option value="0" selected="selected">°F</option>
+                          <option value="0">°F</option>
                           <option value="1">°C</option>
                         </select>
                       </label>
@@ -2418,7 +2415,6 @@
               <td class="c4"></td>
             </tr>
           </table>
-          <img id="stats-icon" src="/icon.png" alt="">
         </div>
       </div>
     </div>
