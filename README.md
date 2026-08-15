@@ -20,7 +20,7 @@ and in the local `builds/` directory after running the build scripts.
 
 Or click [here](https://github.com/VernaUpon74/cloudy-af/releases/download/v1.14.1-flatpak/cloudy-af.flatpak) for a direct link.
 
-Portable Appimage binary also provided on the releases page. Installable .deb and .rpm files can be found there as well.
+Portable Appimage binary also provided on the releases page. Installable .deb and .rpm files can be found there as well. And in the local `builds/` directory after running the build scripts.
 
 #### Install from the `.flatpak` bundle after building from source
 
