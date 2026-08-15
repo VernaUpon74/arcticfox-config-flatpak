@@ -1,9 +1,9 @@
 # cloudy-af
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-> The project is Cloudy AF (originally Arcticfox Config), a Linux desktop configuration utility for vape battery mods that run the ArcticFox firmware. It is a community fork that modernizes the decade-old Electron-based app into a Tauri desktop application, packaged as a Flatpak.                                                                       
-   
-  This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a sandboxed [Flatpak](https://flatpak.org) image for Linux, permission-controllable (through [Flatseal](https://github.com/tchx84/Flatseal)), because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs. 
+> The project is Cloudy AF (originally Arcticfox Config), a Linux desktop configuration utility for vape battery mods that run the ArcticFox firmware. It is a community fork that modernizes the decade-old Electron-based app into a Tauri desktop application, packaged as a Flatpak.
+
+  This fork reworks hobbyquaker's Electron-based Linux/macOS [project](https://github.com/hobbyquaker/arcticfox-config) as a Rust [Tauri](https://tauri.app/) desktop app, packaging it as a sandboxed [Flatpak](https://flatpak.org) image for Linux, permission-controllable (through [Flatseal](https://github.com/tchx84/Flatseal)), because current npm is a minefield, Wine USB passthrough is a headache, and so is creating Windows VMs.
   The fork also adds quality-of-life improvements such as window scaling, an eternally dark UI, Freedom Unit selection that works (original defaulted to Celsius and capped F at 400), Autofire as a multi-click/shortcut option, device auto-reconnect, and a "Lite" appearance mode for small devices.
 
 ![demo](demo.png)
@@ -14,20 +14,23 @@
 
 ### Linux (Flatpak)
 
-A pre-built Flatpak bundle is available on the
-[releases page](https://github.com/VernaUpon74/cloudy-af/releases).
+Pre-built Flatpak bundles are available on the
+[releases page](https://github.com/VernaUpon74/cloudy-af/releases)
+and in the local `builds/` directory after running the build scripts.
 
 #### Install from the `.flatpak` bundle
 
 ```bash
-flatpak install --user arcticfox-config.flatpak
+flatpak install --user builds/cloudy-af.flatpak
 ```
 
 #### Install from a local Flatpak repository
 
+If you built the Flatpak locally, add the local repository and install from it:
+
 ```bash
-flatpak remote-add --user --no-gpg-verify arcticfox-config-repo ./flatpak/repo
-flatpak install --user arcticfox-config-repo org.cloudy.af
+flatpak remote-add --user --no-gpg-verify cloudy-af-repo flatpak/repo
+flatpak install --user cloudy-af-repo org.cloudy.af
 ```
 
 #### Run
@@ -42,7 +45,48 @@ The Flatpak manifest requests `--device=all`, but HID access also requires udev 
 unprivileged users. Install the provided rules:
 
 ```bash
-sudo cp flatpak/50-arcticfox-config.rules /etc/udev/rules.d/
+sudo cp flatpak/50-cloudy-af.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+Then unplug and reconnect your device.
+
+### Linux (AppImage / .deb / .rpm)
+
+Native Linux packages are produced by `scripts/build-appimage.sh` and placed in `builds/`:
+
+- `Cloudy_AF-<version>-x86_64.AppImage` — portable, no install required
+- `Cloudy AF_<version>_amd64.deb` — Debian/Ubuntu installer
+- `Cloudy AF-<version>-1.x86_64.rpm` — Fedora/openSUSE installer
+
+#### AppImage
+
+Make the file executable and run it:
+
+```bash
+chmod +x builds/Cloudy_AF-1.14.1-x86_64.AppImage
+./builds/Cloudy_AF-1.14.1-x86_64.AppImage
+```
+
+The AppImage uses a static runtime and works on systems with only FUSE3.
+
+#### .deb / .rpm
+
+```bash
+# Debian / Ubuntu
+sudo apt install ./builds/Cloudy\ AF_1.14.1_amd64.deb
+
+# Fedora
+sudo dnf install ./builds/Cloudy\ AF-1.14.1-1.x86_64.rpm
+```
+
+#### USB permissions
+
+Native packages also need the udev rules for unprivileged HID access:
+
+```bash
+sudo cp flatpak/50-cloudy-af.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
@@ -51,9 +95,47 @@ Then unplug and reconnect your device.
 
 ### macOS
 
-macOS builds are not currently produced by this fork. The original project provided a `.dmg` and
-Homebrew formula; see [hobbyquaker/arcticfox-config](https://github.com/hobbyquaker/arcticfox-config)
-for the upstream macOS instructions.
+macOS builds are not officially produced by this fork, but the Tauri app can be built from source on
+macOS using Homebrew. The resulting `.app` / `.dmg` uses the Homebrew-installed Node.js runtime to
+run the HID sidecar.
+
+#### Install prerequisites with Homebrew
+
+```bash
+# Install Homebrew if you don't have it:
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install node@22 rust
+```
+
+Make sure Homebrew's `node@22` is in your PATH:
+
+```bash
+# For Apple Silicon Macs:
+echo 'export PATH="/opt/homebrew/opt/node@22/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Intel Macs:
+echo 'export PATH="/usr/local/opt/node@22/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+#### Build
+
+```bash
+npm install
+npm run sidecar:build
+npm run tauri:build -- --bundles dmg
+```
+
+The `.dmg` is written to `src-tauri/target/release/bundle/dmg/`.
+
+#### USB access on macOS
+
+macOS does not allow unprivileged HID access out of the box. The app must be granted
+Input Monitoring permission in **System Settings → Privacy & Security → Input Monitoring**
+after the first launch attempt. You may also need to right-click the app and choose **Open**
+the first time to bypass Gatekeeper.
 
 ## Building from source
 
@@ -77,19 +159,29 @@ npm run tauri:dev
 
 ```bash
 npm install
-npm run sidecar:build
-npm run tauri:build -- --no-bundle
+npm run build:native
 ```
 
-The binary is written to `src-tauri/target/release/arcticfox-config`.
+The native release binary is copied to `builds/cloudy-af`.
+The AppImage / .deb / .rpm build script also copies completed packages to `builds/`.
 
 ### Build the Flatpak
 
 ```bash
 cd flatpak
 flatpak-builder --force-clean --repo=repo build-dir org.cloudy.af.yml
-flatpak build-bundle repo arcticfox-config.flatpak org.cloudy.af
+flatpak build-bundle repo cloudy-af.flatpak org.cloudy.af
+mv cloudy-af.flatpak ../builds/
 ```
+
+### Build the AppImage / .deb / .rpm
+
+```bash
+npm install
+npm run appimage:build
+```
+
+All native Linux packages are copied to `builds/`.
 
 ## Usage
 
@@ -99,7 +191,7 @@ and device settings, then click **Upload** to write the configuration back to th
 
 ## Debug
 
-Work in progress. Issues welcome. 
+Work in progress. Issues welcome.
 
 ## Project structure
 
@@ -109,13 +201,13 @@ Work in progress. Issues welcome.
 - `flatpak/` – Flatpak manifest, desktop entry, appdata, and udev rules
 - `public/` – Static assets (i18n, default config)
 
-  ## Programming language / stack composition:                                                                                                                                                                                               
-                                                                                                                                                                                                                                        
-- Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.                                                                                                                                                                 
-- JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).                                                                                                                        
-- Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.                                                                                                                        
-- YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).                                                                                                                                                
-- JSON — i18n translations, default configuration, and package manifests.     
+## Programming language / stack composition:
+
+- Rust — Tauri 2.x host shell (src-tauri/), window management, and IPC.
+- JavaScript (ES2021) + HTML/CSS — Frontend UI built with Vite, jQuery, and Photon-style CSS (src/, index.html).
+- Node.js — HID sidecar (sidecar/) that bridges USB HID communication via node-hid and the arcticfox npm module.
+- YAML / Shell — Flatpak manifest, desktop entry, appdata, and build scripts (flatpak/).
+- JSON — i18n translations, default configuration, and package manifests.
 
 ## Fork differences
 
@@ -133,7 +225,7 @@ Notable changes include:
 
 - Tauri 2.x desktop shell replacing Electron
 - Flatpak packaging with bundled Node.js sidecar for HID access
-- Dark UI by default. Up Material UIrs, nerd
+- Dark UI by default. Up Material UIrs
 - Window scaling
 - Freedom units by default
 - Autofire added to multi-click / shortcut dropdowns
@@ -174,10 +266,10 @@ This software uses [Highcharts](http://www.highcharts.com/) which is free __only
 Kimi Code assisted in software rewrite.
 Images all edited by mouse using OSS.
 
-## Donations 
+## Donations
 
 Accepting cryptocurrency donations for rework
-- BTC bc1qpfq3c6hdflafccqmsl4v7ussvlw8pazpwez09m 
+- BTC bc1qpfq3c6hdflafccqmsl4v7ussvlw8pazpwez09m
 - XMR 85YdUQXSMTgTeySZCyJjh9QTnzevgCHtZA6dhmFYMZqtE529pUZ5K8ceEC2ysaV2o4CuMuYtoaYPYdJfHYGX7m1WMgyM53i
 
 ## License

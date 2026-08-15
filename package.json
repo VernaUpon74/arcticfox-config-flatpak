@@ -1,5 +1,5 @@
 {
-  "name": "arcticfox-config",
+  "name": "cloudy-af",
   "version": "1.14.1",
   "private": true,
   "description": "Configuration Tool for Vape Battery Mods with Arcticfox Firmware.",
@@ -11,8 +11,12 @@
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
+    "build:native": "npm run sidecar:build && npm run tauri:build -- --no-bundle && mkdir -p builds && cp src-tauri/target/release/cloudy-af builds/cloudy-af",
     "sidecar:build": "cd sidecar && npm install",
-    "postinstall": "npm run sidecar:build"
+    "postinstall": "npm run sidecar:build",
+    "sidecar:bundle:linux": "bash scripts/prepare-linux-sidecar.sh",
+    "appimage:build": "bash scripts/build-appimage.sh",
+    "appimage": "npm run appimage:build"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
