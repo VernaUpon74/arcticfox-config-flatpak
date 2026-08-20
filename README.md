@@ -242,12 +242,14 @@ wabe-sabe
 
 Planned developments include:
 - Firmware update tool- coming next update
-- Screen animations- also coming next update, fw encryption cracked
+- Screen animations in NFirmwareEditor 'Patches' port- also coming next update, fw encryption cracked
+- 'Resource Editor' NFirmwareEditor feature port- screensaver, logo, text editor
 - Better 'Power Curve/Materials' plot visualizer, fix text
-- Temperature field jump by 10 or 5 degrees, dependent on unit chosen in Regional
+- Temperature field jump by 10 or 5 degrees, dependent on unit chosen in Screen->Regional. Temp unit no longer changed in Profiles
 - Surefire Rim C/STM32 support, not just Picos
 - Remove boot version text wabi-sabi
 - Exterminate bugs
+- Fix Appimage
 - ~~Auto TFR curve plotting~~ scrapped, no suitable USB K-type thermocouple adapter found
 - Remove Herobrine
 
