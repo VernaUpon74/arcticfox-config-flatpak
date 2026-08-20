@@ -238,12 +238,18 @@ Notable changes include:
 - Lite mode support in Appearance settings
 - Hover tooltips on all settings rows (specific vape-function descriptions where available)
 - Dependency security updates (`highcharts` 9.x, `xml2js` 0.6.2, local `put` replacement)
-
+wabe-sabe
 
 Planned developments include:
-- Firmware update tool
-- Screen animations
-- Auto TFR curve plotting
+- Firmware update tool- coming next update
+- Screen animations- also coming next update, fw encryption cracked
+- Better 'Power Curve/Materials' plot visualizer, fix text
+- Temperature field jump by 10 or 5 degrees, dependent on unit chosen in Regional
+- Surefire Rim C/STM32 support, not just Picos
+- Remove boot version text wabi-sabi
+- Exterminate bugs
+- ~~Auto TFR curve plotting~~ scrapped, no suitable USB K-type thermocouple adapter found
+- Remove Herobrine
 
 ## Contributing
 
